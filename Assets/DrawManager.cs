@@ -10,6 +10,11 @@ public class DrawManager : MonoBehaviour
     public const float RESOLUTION = 0.1f;
 
     private Line _currentLine;
+    public int LimiteDeLinhas;
+    public int linha;
+    private bool naodesenha;
+    private bool check;
+    public int LimiteDePontos;
     void Start()
     {
         _cam = Camera.main;
@@ -19,16 +24,48 @@ public class DrawManager : MonoBehaviour
     void Update()
     {
         Vector2 mousePos = _cam.ScreenToWorldPoint(Input.mousePosition);
+        if (linha != LimiteDeLinhas)
+            naodesenha = false;
+        else
+            naodesenha = true;
 
-        if(Input.GetMouseButtonDown(0))
+        //Debug.Log(linha);
+
+
+        if (!naodesenha)
+            if (Input.GetMouseButtonDown(0))
         {
-            _currentLine = Instantiate(_linePrefab, mousePos, Quaternion.identity);
+
+                _currentLine = Instantiate(_linePrefab, mousePos, Quaternion.identity);
+                
+   
 
         }
 
-        if(Input.GetMouseButton(0))
+
+        if (Input.GetMouseButton(0))
         {
-            _currentLine.SetPosition(mousePos);
+            if (naodesenha)
+            {
+                check = true;
+            }
+            if (_currentLine._points.Count <= LimiteDePontos)
+            {
+                if (_currentLine != null)
+                    _currentLine.SetPosition(mousePos);
+            }
         }
+        
+
+            if(check)
+        {
+            if(Input.GetMouseButtonUp(0))
+            {
+              
+                _currentLine = null;
+                check = false;
+            }
+        }
+
     }
 }

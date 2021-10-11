@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3415629743087141380}
   m_Layer: 0
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: Linha
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,9 +78,10 @@ GameObject:
   - component: {fileID: 3540975532335003394}
   - component: {fileID: 1916724788009576030}
   - component: {fileID: 6962790280664484235}
+  - component: {fileID: -4013914906566657948}
   m_Layer: 0
   m_Name: Line
-  m_TagString: Untagged
+  m_TagString: Linha
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -232,3 +233,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderer: {fileID: 3540975532335003394}
   _collider: {fileID: 2722091238491358955}
+  _points: []
+--- !u!114 &-4013914906566657948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3540975532335003397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d31179883040feb4e9065920321689ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tempo: 3
+  Linha: 1
+  Arco: 0

@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Bola
+  - Linha
+  - Ring
   layers:
   - Default
   - TransparentFX
