@@ -14,7 +14,8 @@ public class DrawManager : MonoBehaviour
     public int linha;
     private bool naodesenha;
     private bool check;
-    public int LimiteDePontos;
+    public float Tamanho;
+    
     void Start()
     {
         _cam = Camera.main;
@@ -49,11 +50,16 @@ public class DrawManager : MonoBehaviour
             {
                 check = true;
             }
-            if (_currentLine._points.Count <= LimiteDePontos)
-            {
+    
+         
+            if (_currentLine.Distance < Tamanho)
+           {
+                
                 if (_currentLine != null)
                     _currentLine.SetPosition(mousePos);
-            }
+           }
+
+            
         }
         
 
@@ -64,6 +70,7 @@ public class DrawManager : MonoBehaviour
               
                 _currentLine = null;
                 check = false;
+                
             }
         }
 

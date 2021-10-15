@@ -7,8 +7,8 @@ public class Line : MonoBehaviour
     [SerializeField] private LineRenderer _renderer;
     [SerializeField] private EdgeCollider2D _collider;
     private DrawManager _drawmanager;
-
-    public List<Vector2> _points = new List<Vector2>();
+    public float Distance;
+       public List<Vector2> _points = new List<Vector2>();
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +21,14 @@ public class Line : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonUp(0))
+        int numero = _points.Count;
+        float distancia1 = Vector2.Distance(_points[0], _points[(numero - 1) /2]);
+        float distancia2 = Vector2.Distance(_points[(numero-1)/2], _points[(numero - 1)]);
+        Distance = distancia1 + distancia2;
+        //Debug.Log("metade dos pontos " + (numero - 1) / 2);
+       // Debug.Log("todos pontos " + (numero - 1));
+        // Debug.Log(Distance);
+        if (Input.GetMouseButtonUp(0))
             if(_points.Count <2)
             {
                 TiraLinha();

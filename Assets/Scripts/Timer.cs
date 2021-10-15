@@ -8,6 +8,7 @@ public class Timer : MonoBehaviour
     private float _timeRemaining;
     public bool Linha;
     public bool Arco;
+    public bool Bomba;
 
     private void Start()
     {
@@ -30,6 +31,8 @@ public class Timer : MonoBehaviour
             if (Arco)
                 GetComponent<Boia>().TiraArco();
 
+            if (Bomba)
+                GetComponent<Bomba>().TiraBomba();
 
         }
 

@@ -11,7 +11,8 @@ public class Boia : MonoBehaviour
         if (collision.gameObject.CompareTag("Bola"))
         {
             TiraArco();
-            // collision.gameObject.GetComponent<Rigidbody2D>().AddForce (transform.up*0.5f, ForceMode2D.Impulse);
+            Handheld.Vibrate();
+            collision.gameObject.GetComponent<Rigidbody2D>().AddForce (transform.forward*0.5f, ForceMode2D.Impulse);
 
 
 
@@ -23,7 +24,7 @@ public class Boia : MonoBehaviour
         if (!cancela)
         {
             cancela = true;
-            Handheld.Vibrate();
+            
             Destroy(gameObject, 5f * Time.deltaTime);
         }
     }

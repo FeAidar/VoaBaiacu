@@ -23,6 +23,15 @@ public class Ballcollider : MonoBehaviour
             
            
         }
+
+        if (collision.gameObject.CompareTag("Bomba"))
+        {
+            Cancela();
+            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * 1.1f, ForceMode2D.Impulse);
+
+
+
+        }
     }
 
     void Cancela()
