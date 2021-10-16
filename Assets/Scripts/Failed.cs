@@ -19,7 +19,7 @@ public class Failed : MonoBehaviour
             SceneManager.LoadScene("SampleScene");
             else
            
-            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * 13f, ForceMode2D.Impulse);
+            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * 12f, ForceMode2D.Impulse);
             this.gameObject.GetComponent<Collider2D>().enabled = false;
             if (Vida >0)
             StartCoroutine("PerdeVida");
