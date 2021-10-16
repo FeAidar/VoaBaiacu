@@ -10,6 +10,8 @@ public class ScoreGiver : MonoBehaviour
     public Text Score;
     private int Pontos;
     private bool Desliga;
+    public Text vidas;
+
     void Start()
     {
         
@@ -19,6 +21,7 @@ public class ScoreGiver : MonoBehaviour
     void Update()
     {
         Score.text = "" + Pontos;
+        vidas.text = "Vidas: " + FindObjectOfType<Failed>().Vida;
     }
 
 
@@ -36,9 +39,7 @@ public class ScoreGiver : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Ring"))
         {
-            collision.GetComponent<Collider2D>().enabled = false;
-            Debug.Log("teste");
-            StartCoroutine("GivePointRing");
+
         }
     }
 

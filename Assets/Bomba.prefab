@@ -93,7 +93,6 @@ GameObject:
   - component: {fileID: 3164406772484260919}
   - component: {fileID: 3164406772484260913}
   - component: {fileID: 1849828588768714091}
-  - component: {fileID: 1849828588768714090}
   - component: {fileID: 3621407011157269991}
   - component: {fileID: 3621407011157269992}
   m_Layer: 0
@@ -155,21 +154,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.007026762, y: 0.00000005960465}
   m_Size: {x: 0.67332965, y: 0.756404}
   m_Direction: 0
---- !u!114 &1849828588768714090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3164406772484260914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2373dbb9804d5d44db493965b514931d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PontosLinha: 0
-  PontosArco: 600
-  Score: {fileID: 0}
 --- !u!114 &3621407011157269991
 MonoBehaviour:
   m_ObjectHideFlags: 0

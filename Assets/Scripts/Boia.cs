@@ -5,13 +5,18 @@ using UnityEngine;
 public class Boia : MonoBehaviour
 {
     private bool cancela;
+    private ScoreGiver _scoreGiver;
 
+    private void Start()
+    {
+        _scoreGiver = FindObjectOfType<ScoreGiver>();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Bola"))
         {
-            TiraArco();
-            Handheld.Vibrate();
+            VitoriaArco();
+            
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce (transform.forward*0.5f, ForceMode2D.Impulse);
 
 
@@ -27,6 +32,21 @@ public class Boia : MonoBehaviour
             
             Destroy(gameObject, 5f * Time.deltaTime);
         }
+    }
+
+    void VitoriaArco()
+    {
+        if (!cancela)
+        {
+            Handheld.Vibrate();
+            cancela = true;
+            this.GetComponent<Collider2D>().enabled = false;
+            Debug.Log("teste");
+            _scoreGiver.StartCoroutine("GivePointRing");
+            Destroy(gameObject, 5f * Time.deltaTime);
+        }
+
+
     }
 
 }

@@ -7,6 +7,9 @@ public class Failed : MonoBehaviour
 {
     public bool BombaCaiu;
     public Animator Agua;
+    public int Vida = 3;
+    public Spawnerdeboia SpawnderdeBomba;
+
 
         private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -17,6 +20,13 @@ public class Failed : MonoBehaviour
             else
            
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * 13f, ForceMode2D.Impulse);
+            this.gameObject.GetComponent<Collider2D>().enabled = false;
+            if (Vida >0)
+            StartCoroutine("PerdeVida");
+            if (Vida <= 0)
+            {
+                SceneManager.LoadScene("SampleScene");
+            }
 
         }
 
@@ -29,8 +39,8 @@ public class Failed : MonoBehaviour
                 Bombacaiu();
 
             }
-            else
-            SceneManager.LoadScene("SampleScene");
+            else return;
+            
 
 
 
@@ -41,6 +51,14 @@ public class Failed : MonoBehaviour
     void Bombacaiu()
     {
         Agua.SetTrigger("poluir");
+        SpawnderdeBomba.enabled = false;
         
  }
+    IEnumerator PerdeVida()
+    {
+        Vida--;
+        yield return new WaitForSecondsRealtime(0.2f);
+        this.gameObject.GetComponent<Collider2D>().enabled = true;
+
+    }
 }
