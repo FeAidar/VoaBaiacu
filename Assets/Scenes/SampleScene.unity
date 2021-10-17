@@ -4109,7 +4109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2373dbb9804d5d44db493965b514931d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PontosLinha: 0
+  PontosLinha: 10
   PontosArco: 250
   Score: {fileID: 2059512254}
   vidas: {fileID: 630383787}
