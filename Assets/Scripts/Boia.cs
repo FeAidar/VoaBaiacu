@@ -6,16 +6,19 @@ public class Boia : MonoBehaviour
 {
     private bool cancela;
     private ScoreGiver _scoreGiver;
+    private Animator _animator;
+    public GameObject particula;
 
     private void Start()
     {
         _scoreGiver = FindObjectOfType<ScoreGiver>();
+        _animator = this.GetComponent<Animator>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Bola"))
         {
-            VitoriaArco();
+            StartCoroutine("VitoriaArco");
             
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce (transform.forward*0.5f, ForceMode2D.Impulse);
 
@@ -24,26 +27,34 @@ public class Boia : MonoBehaviour
         }
     }
 
-    public void TiraArco()
+    public IEnumerator TiraArco()
     {
         if (!cancela)
         {
             cancela = true;
-            
-            Destroy(gameObject, 5f * Time.deltaTime);
+            _animator.SetTrigger("some");
+            yield return new WaitForSecondsRealtime(0.4f);
+            Destroy(gameObject);
         }
     }
 
-    void VitoriaArco()
+
+
+    public IEnumerator VitoriaArco()
     {
+
         if (!cancela)
         {
             Handheld.Vibrate();
             cancela = true;
+            _animator.SetTrigger("some");
+            particula.SetActive(true);
             this.GetComponent<Collider2D>().enabled = false;
-            Debug.Log("teste");
+            //Debug.Log("teste");
             _scoreGiver.StartCoroutine("GivePointRing");
-            Destroy(gameObject, 5f * Time.deltaTime);
+            yield return new WaitForSecondsRealtime(0.4f);
+            Destroy(gameObject);
+
         }
 
 

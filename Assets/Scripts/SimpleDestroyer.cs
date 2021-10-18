@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Timer : MonoBehaviour
+public class SimpleDestroyer : MonoBehaviour
 {
     public float tempo;
     private float _timeRemaining;
-    public bool Linha;
-    public bool Arco;
-    public bool Bomba;
 
     private void Start()
     {
@@ -25,15 +22,7 @@ public class Timer : MonoBehaviour
         else
         {
             _timeRemaining = 0;
-            if (Linha)
-            GetComponent<Line>().TiraLinha();
-
-            if (Arco)
-                GetComponent<Boia>().StartCoroutine("TiraArco");
-
-            if (Bomba)
-                GetComponent<Bomba>().StartCoroutine("TiraBomba");
-
+            Destroy(gameObject);
         }
 
     }
