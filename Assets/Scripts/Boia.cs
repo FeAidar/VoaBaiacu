@@ -45,7 +45,7 @@ public class Boia : MonoBehaviour
 
         if (!cancela)
         {
-            Handheld.Vibrate();
+            
             cancela = true;
             _animator.SetTrigger("some");
             particula.SetActive(true);

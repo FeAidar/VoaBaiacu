@@ -7,8 +7,10 @@ public class ScoreGiver : MonoBehaviour
 {
     public int PontosLinha;
     public int PontosArco;
+    public int PontosAgua;
+    public int PontosBomba;
     public Text Score;
-    private int Pontos;
+    public int Pontos;
     private bool Desliga;
     public Text vidas;
 
@@ -20,8 +22,11 @@ public class ScoreGiver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Pontos < 0)
+            Pontos = 0;
         Score.text = "" + Pontos;
-        vidas.text = "Vidas: " + FindObjectOfType<Failed>().Vida;
+        vidas.text = "Vidas: " + FindObjectOfType<PowerUps>().Vida;
+
     }
 
 
@@ -29,7 +34,7 @@ public class ScoreGiver : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Linha"))
         {
-            Debug.Log("teste");
+           // Debug.Log("teste");
             StartCoroutine ("GivePointLinha");
         }
 
@@ -37,9 +42,9 @@ public class ScoreGiver : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Ring"))
+        if(collision.gameObject.CompareTag("Mar"))
         {
-
+            StartCoroutine("GivePointMar");
         }
     }
 
@@ -68,4 +73,33 @@ public class ScoreGiver : MonoBehaviour
         Desliga = false;
 
     }
+
+    IEnumerator GivePointMar()
+    {
+
+        if (!Desliga)
+        {
+            Desliga = true;
+            Pontos = Pontos + PontosAgua;
+        }
+        yield return new WaitForSecondsRealtime(0.2f);
+        Desliga = false;
+
+    }
+
+    IEnumerator GivePointBomb()
+    {
+
+        if (!Desliga)
+        {
+            Desliga = true;
+            Pontos = Pontos + PontosBomba;
+        }
+        yield return new WaitForSecondsRealtime(0.2f);
+        Desliga = false;
+
+    }
+
+
+
 }

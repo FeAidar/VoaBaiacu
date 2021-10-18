@@ -9,6 +9,7 @@ TagManager:
   - Ring
   - Bomba
   - Animacao
+  - Mar
   layers:
   - Default
   - TransparentFX
