@@ -88,7 +88,7 @@ public class PowerUps : MonoBehaviour
 
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Mar"))
         {
@@ -102,7 +102,7 @@ public class PowerUps : MonoBehaviour
                     {
                         if (!check)
                         {
-                            Debug.Log("bateu");
+                        //    Debug.Log("bateu");
                             StartCoroutine("PerdeVida");
                             check = true;
                         }
@@ -125,19 +125,15 @@ public class PowerUps : MonoBehaviour
 
 
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    { 
 
         if (collision.gameObject.CompareTag("Linha"))
         {
 
-            Debug.Log("colidiu");
-            if(perdeparaqueda)
-            { 
+           // Debug.Log("colidiu");
+            if (perdeparaqueda)
+            {
 
-                if (Vida >0)
+                if (Vida > 0)
                 {
 
 
@@ -153,8 +149,14 @@ public class PowerUps : MonoBehaviour
             }
         }
 
-
     }
+
+   //private void OnCollisionEnter2D(Collision2D collision)
+ // { 
+
+
+
+ //  }
 
   
     IEnumerator PerdeVida()

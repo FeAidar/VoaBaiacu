@@ -24,15 +24,15 @@ public class Failed : MonoBehaviour
     private void Update()
     {
         Vida = _powerUps.Vida;
-        Debug.Log(Vida);
+      //  Debug.Log(Vida);
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Bola"))
         {
             if (!BombaCaiu)
             {
-                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * 12f, ForceMode2D.Impulse);
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * 1.5f, ForceMode2D.Impulse);
                 this.gameObject.GetComponent<Collider2D>().enabled = false;
                 if (Vida > 0)
                     localdeimpacto = collision.gameObject.transform.position.x;
@@ -45,7 +45,7 @@ public class Failed : MonoBehaviour
             {
                 if (Vida > 0)
                 {
-                    collision.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * 12f, ForceMode2D.Impulse);
+                    collision.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * 1.5f, ForceMode2D.Impulse);
 
                     this.gameObject.GetComponent<Collider2D>().enabled = false;
                     localdeimpacto = collision.gameObject.transform.position.x;

@@ -38,15 +38,17 @@ public class ScoreGiver : MonoBehaviour
             StartCoroutine ("GivePointLinha");
         }
 
-  }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.CompareTag("Mar"))
+        if (collision.gameObject.CompareTag("Mar"))
         {
             StartCoroutine("GivePointMar");
         }
+
     }
+
+   // private void OnCollisionEnter2D(Collision2D collision)
+  //  {
+
+//    }
 
     IEnumerator GivePointLinha()
     {

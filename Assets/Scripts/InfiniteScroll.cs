@@ -17,7 +17,7 @@ public class InfiniteScroll : MonoBehaviour
     {
         _partsLenght = parts.Length;
         width = Tamanho * transform.localScale.x;
-        Debug.Log(width);
+        //Debug.Log(width);
     }
 
     // Update is called once per frame
