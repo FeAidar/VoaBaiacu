@@ -56,11 +56,104 @@ TextureImporter:
   - first:
       213: -3090634935759909701
     second: Animacao Bomba_17
+  - first:
+      213: 4897617462335594687
+    second: Animacao Bomba_18
+  - first:
+      213: -755588067841052317
+    second: Animacao Bomba_19
+  - first:
+      213: 7113357807395720993
+    second: Animacao Bomba_20
+  - first:
+      213: 2829353383555274133
+    second: Animacao Bomba_21
+  - first:
+      213: 7824789242622630514
+    second: Animacao Bomba_22
+  - first:
+      213: 8474482150050357633
+    second: Animacao Bomba_23
+  - first:
+      213: -3546665429531340763
+    second: Animacao Bomba_24
+  - first:
+      213: 2354630052657677881
+    second: Animacao Bomba_25
+  - first:
+      213: 5979199370334227736
+    second: Animacao Bomba_26
+  - first:
+      213: -1682092427094228274
+    second: Animacao Bomba_27
+  - first:
+      213: 3484176847840805697
+    second: Animacao Bomba_28
+  - first:
+      213: -8012369710460901684
+    second: Animacao Bomba_29
+  - first:
+      213: -6801265177433479406
+    second: Animacao Bomba_30
+  - first:
+      213: -5509664440258334752
+    second: Animacao Bomba_31
+  - first:
+      213: 7763975616189709149
+    second: Animacao Bomba_32
+  - first:
+      213: -6255663837162247166
+    second: Animacao Bomba_33
+  - first:
+      213: -8348557187199966099
+    second: Animacao Bomba_34
+  - first:
+      213: -7970677206852580790
+    second: Animacao Bomba_35
+  - first:
+      213: 7925869382698421445
+    second: Animacao Bomba_36
+  - first:
+      213: 4632957903060175822
+    second: Animacao Bomba_37
+  - first:
+      213: 354576279554715381
+    second: Animacao Bomba_38
+  - first:
+      213: 2224725683104632481
+    second: Animacao Bomba_39
+  - first:
+      213: -5305247251818417376
+    second: Animacao Bomba_40
+  - first:
+      213: -4435999704721203334
+    second: Animacao Bomba_41
+  - first:
+      213: -2377685412458116449
+    second: Animacao Bomba_42
+  - first:
+      213: 3445537501471464664
+    second: Animacao Bomba_43
+  - first:
+      213: -3730080786321685997
+    second: Animacao Bomba_44
+  - first:
+      213: -2854058878858931674
+    second: Animacao Bomba_45
+  - first:
+      213: -2702080672800322685
+    second: Animacao Bomba_46
+  - first:
+      213: -8343199012426189109
+    second: Animacao Bomba_47
+  - first:
+      213: -9005699519005817859
+    second: Animacao Bomba_48
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
-    mipMapMode: 0
-    enableMipMap: 0
+    mipMapMode: 1
+    enableMipMap: 1
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -86,8 +179,8 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
-    aniso: 1
+    filterMode: 2
+    aniso: 16
     mipBias: 0
     wrapU: 1
     wrapV: 1
@@ -122,9 +215,9 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
+    textureCompression: 2
+    compressionQuality: 100
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
@@ -134,9 +227,9 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
+    textureCompression: 2
+    compressionQuality: 100
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
@@ -146,9 +239,9 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
+    textureCompression: 2
+    compressionQuality: 100
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
@@ -161,7 +254,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 540
+        y: 1778
         width: 288
         height: 270
       alignment: 0
@@ -182,7 +275,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 288
-        y: 540
+        y: 1778
         width: 288
         height: 270
       alignment: 0
@@ -203,7 +296,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 576
-        y: 540
+        y: 1778
         width: 288
         height: 270
       alignment: 0
@@ -224,7 +317,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 864
-        y: 540
+        y: 1778
         width: 288
         height: 270
       alignment: 0
@@ -245,7 +338,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1152
-        y: 540
+        y: 1778
         width: 288
         height: 270
       alignment: 0
@@ -266,7 +359,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1440
-        y: 540
+        y: 1778
         width: 288
         height: 270
       alignment: 0
@@ -287,7 +380,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 270
+        y: 1508
         width: 288
         height: 270
       alignment: 0
@@ -308,7 +401,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 288
-        y: 270
+        y: 1508
         width: 288
         height: 270
       alignment: 0
@@ -329,7 +422,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 576
-        y: 270
+        y: 1508
         width: 288
         height: 270
       alignment: 0
@@ -350,7 +443,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 864
-        y: 270
+        y: 1508
         width: 288
         height: 270
       alignment: 0
@@ -371,7 +464,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1152
-        y: 270
+        y: 1508
         width: 288
         height: 270
       alignment: 0
@@ -392,7 +485,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1440
-        y: 270
+        y: 1508
         width: 288
         height: 270
       alignment: 0
@@ -413,7 +506,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 1238
         width: 288
         height: 270
       alignment: 0
@@ -434,7 +527,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 288
-        y: 0
+        y: 1238
         width: 288
         height: 270
       alignment: 0
@@ -455,7 +548,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 576
-        y: 0
+        y: 1238
         width: 288
         height: 270
       alignment: 0
@@ -476,7 +569,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 864
-        y: 0
+        y: 1238
         width: 288
         height: 270
       alignment: 0
@@ -488,48 +581,6 @@ TextureImporter:
       bones: []
       spriteID: 0aefd2a9b0c806670800000000000000
       internalID: 8529971675698953888
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Animacao Bomba_16
-      rect:
-        serializedVersion: 2
-        x: 1152
-        y: 0
-        width: 288
-        height: 270
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d1fe4610e09d539a0800000000000000
-      internalID: -6253853853357904099
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Animacao Bomba_17
-      rect:
-        serializedVersion: 2
-        x: 1440
-        y: 0
-        width: 288
-        height: 270
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bbc4e9b96ebdb15d0800000000000000
-      internalID: -3090634935759909701
       vertices: []
       indices: 
       edges: []

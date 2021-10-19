@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3164406772168008263}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.197, y: 0.127, z: 0}
-  m_LocalScale: {x: 0.37, y: 0.37, z: 0.37}
+  m_LocalPosition: {x: 0.197, y: 0.118, z: 0}
+  m_LocalScale: {x: 0.37, y: 0.36999997, z: 0.37}
   m_Children: []
   m_Father: {fileID: 3164406772484260919}
   m_RootOrder: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.88, y: 2.7}
+  m_Size: {x: 1.62, y: 1.52}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -188,6 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosao: {fileID: 195379174058667420, guid: d433f72b9cc9d4c4d8526101a5f27b1e, type: 3}
+  _scoregiver: {fileID: 0}
 --- !u!114 &3621407011157269992
 MonoBehaviour:
   m_ObjectHideFlags: 0

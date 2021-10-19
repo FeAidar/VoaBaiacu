@@ -9,6 +9,7 @@ public class Timer : MonoBehaviour
     public bool Linha;
     public bool Arco;
     public bool Bomba;
+    private bool chamou;
 
     private void Start()
     {
@@ -20,20 +21,24 @@ public class Timer : MonoBehaviour
         if (_timeRemaining > 0)
         {
             _timeRemaining -= Time.deltaTime;
+            chamou = false;
 
         }
         else
         {
             _timeRemaining = 0;
             if (Linha)
-            GetComponent<Line>().TiraLinha();
+            if(!chamou)
+                GetComponent<Line>().TiraLinha();
 
             if (Arco)
-                GetComponent<Boia>().StartCoroutine("TiraArco");
+                if (!chamou)
+                    GetComponent<Boia>().StartCoroutine("TiraArco");
 
             if (Bomba)
-                GetComponent<Bomba>().StartCoroutine("TiraBomba");
-
+                if (!chamou)
+                    GetComponent<Bomba>().StartCoroutine("TiraBomba");
+            chamou = true;
         }
 
     }

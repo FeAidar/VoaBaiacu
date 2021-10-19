@@ -93,7 +93,7 @@ public class PowerUps : MonoBehaviour
         if (collision.gameObject.CompareTag("Mar"))
         {
             
-            if (_failed.BombaCaiu == true)
+            if (_failed.MarCausaDano == true)
             {
                 
                 if (_mascara == true)

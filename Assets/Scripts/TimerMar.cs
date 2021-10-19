@@ -6,9 +6,7 @@ public class TimerMar : MonoBehaviour
 {
     public float tempo;
     private float _timeRemaining;
-    public Animator Mar;
     private Failed _failed;
-    public Spawnerdeboia SpawnderdeBomba;
     private bool Foi;
 
 
@@ -31,9 +29,7 @@ public class TimerMar : MonoBehaviour
             if (!Foi)
             {
                 _timeRemaining = 0;
-                _failed.BombaCaiu = false;
-                SpawnderdeBomba.enabled = true;
-                Mar.SetTrigger("Volta");
+                _failed.VoltaMar();
                 Foi = true;
             }
         }

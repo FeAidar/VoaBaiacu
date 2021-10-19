@@ -51,7 +51,7 @@ public class DrawManager : MonoBehaviour
                 check = true;
             }
     
-         
+         if(_currentLine!=null)
             if (_currentLine.Distance < Tamanho)
            {
                 

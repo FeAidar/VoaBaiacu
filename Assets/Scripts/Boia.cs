@@ -32,10 +32,20 @@ public class Boia : MonoBehaviour
         if (!cancela)
         {
             cancela = true;
-            _animator.SetTrigger("some");
-            yield return new WaitForSecondsRealtime(0.4f);
+             _animator.SetTrigger("some");
+            while (!_animator.GetCurrentAnimatorStateInfo(0).IsName("SomeBoia"))
+            {
+                yield return null;
+            }
+            while ((_animator.GetCurrentAnimatorStateInfo(0).normalizedTime) % 1 < 0.99f)
+            {
+                yield return null;
+            }
             Destroy(gameObject);
         }
+
+
+
     }
 
 
@@ -47,13 +57,20 @@ public class Boia : MonoBehaviour
         {
             
             cancela = true;
-            _animator.SetTrigger("some");
             particula.SetActive(true);
+            _animator.SetTrigger("some");
             this.GetComponent<Collider2D>().enabled = false;
-            //Debug.Log("teste");
             _scoreGiver.StartCoroutine("GivePointRing");
-            yield return new WaitForSecondsRealtime(0.4f);
-            Destroy(gameObject);
+            while (!_animator.GetCurrentAnimatorStateInfo(0).IsName("SomeBoia"))
+            {
+                yield return null;
+            }
+            while ((_animator.GetCurrentAnimatorStateInfo(0).normalizedTime) % 1 < 0.99f)
+            {
+                yield return null;
+            }
+            
+             Destroy(gameObject);
 
         }
 

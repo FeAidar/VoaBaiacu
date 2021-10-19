@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Failed : MonoBehaviour
 {
-    public bool BombaCaiu;
+    private bool BombaCaiu;
     public Animator Agua;
     private int Vida;
     public Spawnerdeboia SpawnderdeBomba;
@@ -14,6 +14,8 @@ public class Failed : MonoBehaviour
     public GameObject watersplash;
     public GameObject acidsplash;
     private float localdeimpacto;
+    public bool MarCausaDano;
+    private string nomedaanimacao;
 
     private void Start()
     {
@@ -24,7 +26,11 @@ public class Failed : MonoBehaviour
     private void Update()
     {
         Vida = _powerUps.Vida;
-      //  Debug.Log(Vida);
+
+                
+     //   Debug.Log(MarCausaDano);
+
+  
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -84,10 +90,11 @@ public class Failed : MonoBehaviour
     {
         
         watersplash.GetComponent<ParticleSystem>().Play();
-        Agua.SetTrigger("poluir");
+       
         SpawnderdeBomba.enabled = false;
-        
- }
+        StartCoroutine("EsperaPoluir");
+
+    }
     IEnumerator PerdeVida()
     {
        if(!BombaCaiu)
@@ -97,5 +104,53 @@ public class Failed : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.2f);
         this.gameObject.GetComponent<Collider2D>().enabled = true;
 
+    }
+
+    public void VoltaMar()
+    {
+        BombaCaiu = false;
+        SpawnderdeBomba.enabled = true;
+        StartCoroutine("EsperaLimpar");
+
+    }
+
+
+    public IEnumerator EsperaPoluir()
+    {
+        Agua.SetTrigger("poluir");
+        //Wait until we enter the current state
+        while (!Agua.GetCurrentAnimatorStateInfo(0).IsName("AguaPoluindo"))
+        {
+            yield return null;
+        }
+
+        //Now, Wait until the current state is done playing
+        while ((Agua.GetCurrentAnimatorStateInfo(0).normalizedTime) % 1 < 0.99f)
+        {
+            yield return null;
+        }
+
+        //Done playing. Do something below!
+        MarCausaDano = true;
+    }
+
+
+    public IEnumerator EsperaLimpar()
+    {
+        Agua.SetTrigger("Volta");
+        //Wait until we enter the current state
+        while (!Agua.GetCurrentAnimatorStateInfo(0).IsName("AguaLimpando"))
+        {
+            yield return null;
+        }
+
+        //Now, Wait until the current state is done playing
+        while ((Agua.GetCurrentAnimatorStateInfo(0).normalizedTime) % 1 < 0.99f)
+        {
+            yield return null;
+        }
+
+        //Done playing. Do something below!
+        MarCausaDano = false;
     }
 }
