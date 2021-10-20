@@ -125,7 +125,7 @@ public class Failed : MonoBehaviour
         }
 
         //Now, Wait until the current state is done playing
-        while ((Agua.GetCurrentAnimatorStateInfo(0).normalizedTime) % 1 < 0.99f)
+        while ((Agua.GetCurrentAnimatorStateInfo(0).IsName("AguaPoluindo") && (Agua.GetCurrentAnimatorStateInfo(0).normalizedTime) % 1 < 0.99f))
         {
             yield return null;
         }

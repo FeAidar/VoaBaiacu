@@ -11,6 +11,7 @@ public class InfiniteScroll : MonoBehaviour
     private float width;
     private int _partsLenght;
     protected Action<Transform> onScrollPartRecycled;
+    public bool Unscaled;
 
 
     void Awake()
@@ -23,40 +24,82 @@ public class InfiniteScroll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        foreach (Transform part in parts)
+        if (!Unscaled)
         {
-            //Debug.Log(part.position.x + " / " + (width * _partsLenght / 2));
-   
-
-            part.Translate(speed * Time.deltaTime);
-            if (speed.x < 0)
+            foreach (Transform part in parts)
             {
-                if (part.position.x < -width * _partsLenght / 2)
+                //Debug.Log(part.position.x + " / " + (width * _partsLenght / 2));
+
+
+                part.Translate(speed * Time.deltaTime);
+                if (speed.x < 0)
                 {
-                    //Debug.Log("PASSOU! ATRAS!");
-                    part.Translate(new Vector2(_partsLenght * width, 0));
-                    onScrollPartRecycled?.Invoke(part);
+                    if (part.position.x < -width * _partsLenght / 2)
+                    {
+                        //Debug.Log("PASSOU! ATRAS!");
+                        part.Translate(new Vector2(_partsLenght * width, 0));
+                        onScrollPartRecycled?.Invoke(part);
 
 
 
 
+
+                    }
+                }
+                if (speed.x > 0)
+                {
+                    if (part.position.x > width * _partsLenght / 2)
+                    {
+                        // Debug.Log("PASSOU!");
+                        part.Translate(new Vector2(_partsLenght * -width, 0));
+                        onScrollPartRecycled?.Invoke(part);
+
+
+
+
+                    }
 
                 }
             }
-            if(speed.x > 0)
-            { 
-                    if (part.position.x > width * _partsLenght/ 2)
+
+        }
+        else
+        {
+
+            foreach (Transform part in parts)
+            {
+                //Debug.Log(part.position.x + " / " + (width * _partsLenght / 2));
+
+
+                part.Translate(speed * Time.unscaledDeltaTime);
+                if (speed.x < 0)
                 {
-                   // Debug.Log("PASSOU!");
-                  part.Translate(new Vector2(_partsLenght *- width, 0));
-                    onScrollPartRecycled?.Invoke(part);
+                    if (part.position.x < -width * _partsLenght / 2)
+                    {
+                        //Debug.Log("PASSOU! ATRAS!");
+                        part.Translate(new Vector2(_partsLenght * width, 0));
+                        onScrollPartRecycled?.Invoke(part);
 
 
 
+
+
+                    }
+                }
+                if (speed.x > 0)
+                {
+                    if (part.position.x > width * _partsLenght / 2)
+                    {
+                        // Debug.Log("PASSOU!");
+                        part.Translate(new Vector2(_partsLenght * -width, 0));
+                        onScrollPartRecycled?.Invoke(part);
+
+
+
+
+                    }
 
                 }
-
             }
         }
     }

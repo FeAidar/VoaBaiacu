@@ -20,6 +20,17 @@ public class Spawnerdeboia : MonoBehaviour
     public int VariacaoDeTempoTarde;
     public int VariacaoDeTempoNoite;
 
+   private void Awake()
+    {
+        TempodeSpawn = TempoDeSpawnManha;
+        VariacaoDeTempo = VariacaoDeTempoManha;
+        Debug.Log("awake");
+    }
+
+    void Update()
+    {
+        Debug.Log(TempodeSpawn);
+    }
     // Start is called before the first frame update
     void OnEnable()
     {

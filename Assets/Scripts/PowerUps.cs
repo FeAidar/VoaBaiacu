@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+
+
 
 public class PowerUps : MonoBehaviour
 {
@@ -23,6 +23,7 @@ public class PowerUps : MonoBehaviour
     public GameObject CanvasParaquedas;
     private bool perdeparaqueda;
     private bool check;
+    private Menu _menu;
 
     private void Start()
     {
@@ -31,6 +32,7 @@ public class PowerUps : MonoBehaviour
         pesonormal = GetComponent<Rigidbody2D>().mass;
         gravidadenormal = GetComponent<Rigidbody2D>().gravityScale;
         _failed = FindObjectOfType<Failed>();
+        _menu = FindObjectOfType<Menu>();
 
     }
 
@@ -95,14 +97,14 @@ public class PowerUps : MonoBehaviour
             
             if (_failed.MarCausaDano == true)
             {
-                
+
                 if (_mascara == true)
                 {
                     if (Vida > 0)
                     {
                         if (!check)
                         {
-                        //    Debug.Log("bateu");
+                            //    Debug.Log("bateu");
                             StartCoroutine("PerdeVida");
                             check = true;
                         }
@@ -118,7 +120,9 @@ public class PowerUps : MonoBehaviour
 
                 }
                 else
-                  SceneManager.LoadScene("SampleScene");
+                {
+                   _menu.Perdeu();
+                }
 
             }
 

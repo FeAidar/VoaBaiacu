@@ -7,6 +7,7 @@ public class MudaCeu : MonoBehaviour
     public float tempo;
     private float _timeRemaining;
     public Animator animator;
+    private bool primeiramanhafoi;
     private bool pordosolfoi;
     private bool noitefoi;
     private bool manhafoi;
@@ -15,8 +16,9 @@ public class MudaCeu : MonoBehaviour
     private void Start()
     {
         _timeRemaining = tempo;
-        SpawnerDeBoia.TemposManha();
-        SpawnerDeBomba.TemposManha();
+      
+       // SpawnerDeBoia.TemposManha();
+       // SpawnerDeBomba.TemposManha();
 
     }
 
@@ -33,6 +35,16 @@ public class MudaCeu : MonoBehaviour
           
 
         }
+        if (_timeRemaining < tempo * 0.99)
+        {
+            if (!primeiramanhafoi)
+            {
+                SpawnerDeBoia.TemposManha();
+                SpawnerDeBomba.TemposManha();
+                primeiramanhafoi = true;
+            }
+         }
+
 
         if (_timeRemaining < tempo*0.75)
             {
