@@ -24,12 +24,12 @@ public class Spawnerdeboia : MonoBehaviour
     {
         TempodeSpawn = TempoDeSpawnManha;
         VariacaoDeTempo = VariacaoDeTempoManha;
-        Debug.Log("awake");
+        //Debug.Log("awake");
     }
 
     void Update()
     {
-        Debug.Log(TempodeSpawn);
+      //  Debug.Log(TempodeSpawn);
     }
     // Start is called before the first frame update
     void OnEnable()

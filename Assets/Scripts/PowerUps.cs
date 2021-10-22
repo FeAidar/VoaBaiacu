@@ -158,12 +158,7 @@ public class PowerUps : MonoBehaviour
 
     }
 
-   //private void OnCollisionEnter2D(Collision2D collision)
- // { 
 
-
-
- //  }
 
   
     IEnumerator PerdeVida()

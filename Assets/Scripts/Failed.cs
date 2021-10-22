@@ -15,7 +15,8 @@ public class Failed : MonoBehaviour
     public GameObject acidsplash;
     private float localdeimpacto;
     public bool MarCausaDano;
-    private string nomedaanimacao;
+    public AudioSource Bomba;
+   
 
     private void Start()
     {
@@ -69,15 +70,13 @@ public class Failed : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Bomba"))
         {
-            if (!BombaCaiu)
-            {
+
+                Bomba.Play();
                 Destroy(collision.gameObject);
                 BombaCaiu = true;
                 Handheld.Vibrate();
                 Bombacaiu();
 
-            }
-            else return;
 
             localdeimpacto = collision.gameObject.transform.position.x;
             watersplash.transform.position = new Vector3(localdeimpacto, watersplash.transform.position.y);

@@ -16,6 +16,7 @@ public class Menu : MonoBehaviour
     public GameObject comeco;
     public AudioSource StartSound;
     public AudioSource DieSound;
+   
     
     void Start()
     {
@@ -31,11 +32,13 @@ public class Menu : MonoBehaviour
     }
     public IEnumerator Animacao()
     {
-        GetComponentInChildren<Button>().enabled =false;
+        
                     PeixeMenu.SetTrigger("comeca");
-            //Wait until we enter the current state
-            while (!PeixeMenu.GetCurrentAnimatorStateInfo(0).IsName("PeixeMenu"))
+       
+        //Wait until we enter the current state
+        while (!PeixeMenu.GetCurrentAnimatorStateInfo(0).IsName("PeixeMenu"))
             {
+            
             StartSound.Play();
             yield return null;
             }
@@ -59,17 +62,15 @@ public class Menu : MonoBehaviour
     public void Perdeu()
     {
         Time.timeScale = 0;
+        Peixe.GetComponent<ScoreGiver>().RegisterScore();
         DieSound.Play();
         PeixeMorto.transform.position = new Vector3(Peixe.transform.position.x, PeixeMorto.transform.position.y);
         PeixeMorto.SetActive(true);
         TeladeDerrota.SetActive(true);
         _controlador.SetActive(false);
+        
     }
-    public void Recomeca()
-    {
-        Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
-
-    }                      
+               
                     
 
 }

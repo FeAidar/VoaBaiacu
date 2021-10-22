@@ -12,6 +12,7 @@ TagManager:
   - Mar
   - Morto
   - Paredes
+  - Transicao
   layers:
   - Default
   - TransparentFX

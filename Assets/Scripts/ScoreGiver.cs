@@ -20,6 +20,7 @@ public class ScoreGiver : MonoBehaviour
     public AudioSource BatidaAgua;
     public AudioSource BombaExplode;
     public AudioSource Boia;
+    public AudioSource Somboia;
 
 
 
@@ -40,19 +41,23 @@ public class ScoreGiver : MonoBehaviour
 
         if (scoreValue > highScore)
         {
+            ShowHighScore();
+        }
+
+       if (scoreValue < highScore)
+         {
+              HideHighScore();
+          }
+    }
+
+    public void RegisterScore()
+    {
+        if (scoreValue > highScore)
+        {
             highScore = scoreValue;
             PlayerPrefs.SetInt(bestID, highScore);
             ShowHighScore();
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        
-
-
     }
 
 
@@ -74,7 +79,19 @@ public class ScoreGiver : MonoBehaviour
             StartCoroutine("SomParede");
         }
 
+        if (collision.gameObject.CompareTag("Bomba"))
+        {
+            StartCoroutine("SomParede");
+        }
+
+        if (collision.gameObject.CompareTag("Ring"))
+        {
+            StartCoroutine("SomBoia");
+        }
+
     }
+
+ 
 
     IEnumerator GivePointLinha()
     {
@@ -148,11 +165,32 @@ public class ScoreGiver : MonoBehaviour
 
     }
 
+    IEnumerator SomBoia()
+    {
+
+        if (!Desliga)
+        {
+            Desliga = true;
+           Somboia.Play();
+
+        }
+        yield return new WaitForSecondsRealtime(0.2f);
+        Desliga = false;
+
+
+    }
+
 
     public void ShowHighScore()
     {
-        score.text = "" + highScore;
+        
         highscore.SetActive(true);
+    }
+
+    public void HideHighScore()
+    {
+       
+        highscore.SetActive(false);
     }
 
 }
