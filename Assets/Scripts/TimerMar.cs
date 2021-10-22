@@ -30,6 +30,7 @@ public class TimerMar : MonoBehaviour
             {
                 _timeRemaining = 0;
                 _failed.VoltaMar();
+               _failed.MarCausaDano = false;
                 Foi = true;
             }
         }

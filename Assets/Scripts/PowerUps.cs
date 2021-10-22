@@ -28,7 +28,7 @@ public class PowerUps : MonoBehaviour
     private void Start()
     {
         Score = GetComponent<ScoreGiver>();
-        pontoinicial = Score.Pontos;
+        pontoinicial = Score.scoreValue;
         pesonormal = GetComponent<Rigidbody2D>().mass;
         gravidadenormal = GetComponent<Rigidbody2D>().gravityScale;
         _failed = FindObjectOfType<Failed>();
@@ -38,7 +38,7 @@ public class PowerUps : MonoBehaviour
 
     void Update()
     {
-        pontos = Score.Pontos;
+        pontos = Score.scoreValue;
         if (pontos > pontoinicial + praganhar)
         {
             if (!valendo)

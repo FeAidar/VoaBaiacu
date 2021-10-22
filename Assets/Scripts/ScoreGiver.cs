@@ -9,23 +9,44 @@ public class ScoreGiver : MonoBehaviour
     public int PontosArco;
     public int PontosAgua;
     public int PontosBomba;
-    public Text Score;
-    public int Pontos;
+    public Text score;
     private bool Desliga;
-    public Text vidas;
+    public Text highscore;
+    public int pontos;
+    const string bestID = "Score_Best";
+    int highScore;
+    public int scoreValue = 0;
+
 
     void Start()
     {
+
+        highScore = PlayerPrefs.GetInt(bestID, 0);
         
+    }
+
+    public void AddScore(int addScore)
+    {
+        scoreValue += addScore;
+        if (scoreValue < 0)
+            scoreValue = 0;
+        score.text = scoreValue.ToString();
+
+
+        if (scoreValue > highScore)
+        {
+            highScore = scoreValue;
+            PlayerPrefs.SetInt(bestID, highScore);
+            ShowHighScore();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Pontos < 0)
-            Pontos = 0;
-        Score.text = "" + Pontos;
-        vidas.text = "Vidas: " + FindObjectOfType<PowerUps>().Vida;
+
+        
+
 
     }
 
@@ -45,18 +66,13 @@ public class ScoreGiver : MonoBehaviour
 
     }
 
-   // private void OnCollisionEnter2D(Collision2D collision)
-  //  {
-
-//    }
-
     IEnumerator GivePointLinha()
     {
         
         if (!Desliga)
         {
             Desliga = true;
-            Pontos = Pontos+PontosLinha;
+            AddScore(PontosLinha);
         }
         yield return new WaitForSecondsRealtime (0.2f);
         Desliga = false;
@@ -69,7 +85,7 @@ public class ScoreGiver : MonoBehaviour
         if (!Desliga)
         {
             Desliga = true;
-            Pontos = Pontos + PontosArco;
+            AddScore(PontosArco);
         }
         yield return new WaitForSecondsRealtime(0.2f);
         Desliga = false;
@@ -82,7 +98,7 @@ public class ScoreGiver : MonoBehaviour
         if (!Desliga)
         {
             Desliga = true;
-            Pontos = Pontos + PontosAgua;
+            AddScore(PontosAgua);
         }
         yield return new WaitForSecondsRealtime(0.2f);
         Desliga = false;
@@ -95,7 +111,7 @@ public class ScoreGiver : MonoBehaviour
         if (!Desliga)
         {
             Desliga = true;
-            Pontos = Pontos + PontosBomba;
+            AddScore(PontosBomba);
         }
         yield return new WaitForSecondsRealtime(0.2f);
         Desliga = false;
@@ -103,5 +119,10 @@ public class ScoreGiver : MonoBehaviour
     }
 
 
+    public void ShowHighScore()
+    {
+        score.text = "" + highScore;
+        highscore.text = "MELHOR PONTUAÇÃO";
+    }
 
 }
