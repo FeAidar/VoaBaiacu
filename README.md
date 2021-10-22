@@ -5,7 +5,7 @@ Aprendendo a utilizar o Github e fazendo um HyperCasual no processo.
 Pra isso o jogador desenha linhas na tela para ajudar o peixe a tomar impulso e se manter no ar.
 O jogo continua até o momento em que o jogador não consegue salvar o Baiacu da água poluída.
 
-#Elementos:
+#Elementos#
 --Linhas 
 = são desenhadas pelo jogador, arrastando o dedo na tela.
 = Limite de três linhas na tela por vez
@@ -32,16 +32,16 @@ O jogo continua até o momento em que o jogador não consegue salvar o Baiacu da
 
 
 
-Ganho de pontos:
+#Ganho de pontos#
 + 10 Pontos por toque do Baiacu em linhas desenhas
 + 250 Pontos por passagem do Baiacu dentro de Bóias
 + 300 Pontos por bomba detonada no ar
 - 10 Pontos por toque do Baiacu na água do mar
 
-Highscore:
+#Highscore#
 O jogo registra sua última pontuação mais alta e o notifica quando consegue ultrapassá-la.
 
-Variação de Dinâmica
+#Variação de Dinâmica#
 O jogo simula a passagem de um dia, tendo mudanças de background e de dinâmica de Spawn de Bóias e Bombas.
 Ao fim do dia, o ciclo recomeça.
 -- Duração de um ciclo > 10 Minutos
@@ -60,25 +60,25 @@ Ao fim do dia, o ciclo recomeça.
 
 
 
-Condição de morte:
+#Condição de morte#
 Quando uma bomba cai no mar, ela poluí a água. Se o Baiacu tocar a àgua nesse estado, ele morre.
 
 
 
-Duração do Mar Poluído:
+#Duração do Mar Poluído#
 20 segundos desde o momento que peixes mortos boiam na água.
 
 
-Power-Ups:
+#Power-Ups#
 + 3 Máscaras de Toxinas, assim o Baiacu pode tocar a água poluída sem risco de morte.
 + 3 Paraquedas, assim ele se torna mais leve e lento, facilitando evitar água.
 
 
-Condição de Conquista do Power-Up
+#Condição de Conquista do Power-Up#
 A cada mil pontos do último power-up, o jogador vai receber aleatóriamente um benefício.
 
 
-Condição de Perda do Power-Up
+#Condição de Perda do Power-Up#
 -1 Máscara quando toca o mar poluído
 -1 Paraquedas quando toca uma linha desenhada
 
