@@ -1,10 +1,11 @@
 # VoaBaiacu
-Aprendendo a utilizar o Github e fazendo um HyperCasual no processo
-Jogo HyperCasual feito na Unity, a ideia é ajudar um baiacu que quer voar.
+Aprendendo a utilizar o Github e fazendo um HyperCasual no processo.
+
+#Jogo HyperCasual feito na Unity, a ideia é ajudar um baiacu que quer voar.
 Pra isso o jogador desenha linhas na tela para ajudar o peixe a tomar impulso e se manter no ar.
 O jogo continua até o momento em que o jogador não consegue salvar o Baiacu da água poluída.
 
-Elementos:
+#Elementos:
 --Linhas 
 = são desenhadas pelo jogador, arrastando o dedo na tela.
 = Limite de três linhas na tela por vez
