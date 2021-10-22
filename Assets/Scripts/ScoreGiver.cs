@@ -16,6 +16,11 @@ public class ScoreGiver : MonoBehaviour
     const string bestID = "Score_Best";
     int highScore;
     public int scoreValue = 0;
+    public List<AudioSource> SonsBatidas = new List<AudioSource>();
+    public AudioSource BatidaAgua;
+    public AudioSource BombaExplode;
+    public AudioSource Boia;
+
 
 
     void Start()
@@ -64,6 +69,11 @@ public class ScoreGiver : MonoBehaviour
             StartCoroutine("GivePointMar");
         }
 
+        if (collision.gameObject.CompareTag("Paredes"))
+        {
+            StartCoroutine("SomParede");
+        }
+
     }
 
     IEnumerator GivePointLinha()
@@ -72,10 +82,12 @@ public class ScoreGiver : MonoBehaviour
         if (!Desliga)
         {
             Desliga = true;
+            SonsBatidas[Random.Range(0, (SonsBatidas.Count - 1))].Play();
             AddScore(PontosLinha);
         }
         yield return new WaitForSecondsRealtime (0.2f);
         Desliga = false;
+
 
     }
 
@@ -86,6 +98,7 @@ public class ScoreGiver : MonoBehaviour
         {
             Desliga = true;
             AddScore(PontosArco);
+            Boia.Play();
         }
         yield return new WaitForSecondsRealtime(0.2f);
         Desliga = false;
@@ -99,6 +112,7 @@ public class ScoreGiver : MonoBehaviour
         {
             Desliga = true;
             AddScore(PontosAgua);
+            BatidaAgua.Play();
         }
         yield return new WaitForSecondsRealtime(0.2f);
         Desliga = false;
@@ -112,9 +126,25 @@ public class ScoreGiver : MonoBehaviour
         {
             Desliga = true;
             AddScore(PontosBomba);
+            BombaExplode.Play();
         }
         yield return new WaitForSecondsRealtime(0.2f);
         Desliga = false;
+
+    }
+
+    IEnumerator SomParede()
+    {
+
+        if (!Desliga)
+        {
+            Desliga = true;
+            SonsBatidas[Random.Range(0, (SonsBatidas.Count - 1))].Play();
+           
+        }
+        yield return new WaitForSecondsRealtime(0.2f);
+        Desliga = false;
+
 
     }
 

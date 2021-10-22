@@ -11,6 +11,7 @@ TagManager:
   - Animacao
   - Mar
   - Morto
+  - Paredes
   layers:
   - Default
   - TransparentFX

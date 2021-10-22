@@ -24,6 +24,7 @@ public class PowerUps : MonoBehaviour
     private bool perdeparaqueda;
     private bool check;
     private Menu _menu;
+    public AudioSource PowerUP;
 
     private void Start()
     {
@@ -67,6 +68,7 @@ public class PowerUps : MonoBehaviour
 
     void Paraquedas()
     {
+        PowerUP.Play();
         paraquedas.SetActive(true);
         CanvasParaquedas.SetActive(true);
         GetComponent<Rigidbody2D>().mass = 1;
@@ -79,6 +81,7 @@ public class PowerUps : MonoBehaviour
 
     void Mascara()
     {
+        PowerUP.Play();
         mascara.SetActive(true);
         CanvasMascara.SetActive(true);
         _mascara = true;

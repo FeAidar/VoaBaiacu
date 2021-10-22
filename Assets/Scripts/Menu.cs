@@ -14,6 +14,8 @@ public class Menu : MonoBehaviour
     public Animator PeixeMenu;
     public Animator Titulo;
     public GameObject comeco;
+    public AudioSource StartSound;
+    public AudioSource DieSound;
     
     void Start()
     {
@@ -34,13 +36,14 @@ public class Menu : MonoBehaviour
             //Wait until we enter the current state
             while (!PeixeMenu.GetCurrentAnimatorStateInfo(0).IsName("PeixeMenu"))
             {
-            
+            StartSound.Play();
             yield return null;
             }
 
             //Now, Wait until the current state is done playing
             while ((PeixeMenu.GetCurrentAnimatorStateInfo(0).normalizedTime) % 1 < 0.99f)
             {
+            
             blur.SetActive(false);
             yield return null;
             }
@@ -56,6 +59,7 @@ public class Menu : MonoBehaviour
     public void Perdeu()
     {
         Time.timeScale = 0;
+        DieSound.Play();
         PeixeMorto.transform.position = new Vector3(Peixe.transform.position.x, PeixeMorto.transform.position.y);
         PeixeMorto.SetActive(true);
         TeladeDerrota.SetActive(true);
