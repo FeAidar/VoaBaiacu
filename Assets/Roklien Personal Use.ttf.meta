@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: abd2f525105ac164d97ad038fb9fdcda
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Roklien Personal Use
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 0a8ecf70ba1f43a4da13b7520fccee62, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

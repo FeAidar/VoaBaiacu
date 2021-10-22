@@ -9,9 +9,9 @@ public class ScoreGiver : MonoBehaviour
     public int PontosArco;
     public int PontosAgua;
     public int PontosBomba;
-    public Text score;
+    public TMPro.TextMeshProUGUI score;
     private bool Desliga;
-    public Text highscore;
+    public GameObject highscore;
     public int pontos;
     const string bestID = "Score_Best";
     int highScore;
@@ -122,7 +122,7 @@ public class ScoreGiver : MonoBehaviour
     public void ShowHighScore()
     {
         score.text = "" + highScore;
-        highscore.text = "MELHOR PONTUAÇÃO";
+        highscore.SetActive(true);
     }
 
 }
