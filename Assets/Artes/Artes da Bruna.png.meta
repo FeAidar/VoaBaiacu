@@ -54,6 +54,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -352,6 +353,17 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Artes da Bruna_6: 8234155824959643223
+      Artes da Bruna_3: 8346828244716015611
+      Artes da Bruna_7: -6106615802374124182
+      Artes da Bruna_1: 546012295750213495
+      Artes da Bruna_19: 8567736871785884874
+      Artes da Bruna_5: 7032704354760993786
+      Artes da Bruna_0: -208656892089640747
+      Artes da Bruna_11: 2466192770645516964
+      Artes da Bruna_4: -4955054349330819451
+      Artes da Bruna_2: -3513534497228664964
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

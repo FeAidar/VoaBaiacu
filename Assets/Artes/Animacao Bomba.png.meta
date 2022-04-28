@@ -171,6 +171,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -595,6 +596,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Animacao Bomba_2: -3193594290067003681
+      Animacao Bomba_7: 5279235464954412946
+      Animacao Bomba_15: 8529971675698953888
+      Animacao Bomba_5: 2699347219167771163
+      Animacao Bomba_3: 7208106618503801354
+      Animacao Bomba_11: -701477382174302727
+      Animacao Bomba_13: -2831918055479682322
+      Animacao Bomba_1: -3148509899066630411
+      Animacao Bomba_9: 8770627596044833528
+      Animacao Bomba_10: -7856820282301488532
+      Animacao Bomba_6: 7178512145521703092
+      Animacao Bomba_12: 3295607787324261968
+      Animacao Bomba_0: 971997544458008001
+      Animacao Bomba_4: 5974533347851991120
+      Animacao Bomba_8: -6602658292377379381
+      Animacao Bomba_14: 859920199627358950
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
