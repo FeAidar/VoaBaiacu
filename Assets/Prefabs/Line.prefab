@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3540975532335003395}
   m_RootOrder: 0
@@ -66,6 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cd725f369dfcf740b4d795828ffa946, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  line: {fileID: 6962790280664484235}
 --- !u!1 &3540975532335003397
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,7 +78,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3540975532335003395}
   - component: {fileID: 3540975532335003394}
-  - component: {fileID: 1916724788009576030}
   - component: {fileID: 6962790280664484235}
   - component: {fileID: -4013914906566657948}
   m_Layer: 0
@@ -96,6 +97,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.124583036, y: -0.98112494, z: -76.444496}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7585285823825574628}
   m_Father: {fileID: 0}
@@ -112,6 +114,7 @@ LineRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -197,28 +200,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!68 &1916724788009576030
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3540975532335003397}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.22458291, y: 0.9811249}
-  - {x: 4.975417, y: 0.9811249}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!114 &6962790280664484235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,10 +212,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff84c30c76f27b944a22f061d9c68c59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderer: {fileID: 3540975532335003394}
-  _collider: {fileID: 2722091238491358955}
-  Distance: 0
-  _points: []
+  lineRenderer: {fileID: 3540975532335003394}
+  edgeCollider2D: {fileID: 2722091238491358955}
+  points: []
 --- !u!114 &-4013914906566657948
 MonoBehaviour:
   m_ObjectHideFlags: 0

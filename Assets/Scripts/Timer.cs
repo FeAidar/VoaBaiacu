@@ -29,7 +29,7 @@ public class Timer : MonoBehaviour
             _timeRemaining = 0;
             if (Linha)
             if(!chamou)
-                GetComponent<Line>().TiraLinha();
+                GetComponent<Line>().RemoveLineCount();
 
             if (Arco)
                 if (!chamou)

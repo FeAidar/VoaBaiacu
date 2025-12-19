@@ -1,37 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Line : MonoBehaviour
 {
-    [SerializeField] private LineRenderer _renderer;
-    [SerializeField] private EdgeCollider2D _collider;
-    private DrawManager _drawmanager;
-    public float Distance;
-       public List<Vector2> _points = new List<Vector2>();
-    // Start is called before the first frame update
+    [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private EdgeCollider2D edgeCollider2D;
+    private DrawManager _drawManager;
+    public DrawManager drawManager => _drawManager;
+    private float _distance;
+    public float Distance => _distance;
+    [SerializeField] private List<Vector2> points = new List<Vector2>();
+    private bool _start;
+    
+    
     void Start()
     {
-        _collider.transform.position -= transform.position;
-        _drawmanager = FindObjectOfType<DrawManager>();
-        _drawmanager.linha++;
+        edgeCollider2D.transform.position -= transform.position;
+
 
     }
 
-    // Update is called once per frame
+    public void GetReference(DrawManager drawManager)
+    {
+        _drawManager = drawManager;
+        _start = true;
+    }
     void Update()
     {
-        int numero = _points.Count;
-        float distancia1 = Vector2.Distance(_points[0], _points[(numero - 1) /2]);
-        float distancia2 = Vector2.Distance(_points[(numero-1)/2], _points[(numero - 1)]);
-        Distance = distancia1 + distancia2;
-        //Debug.Log("metade dos pontos " + (numero - 1) / 2);
-       // Debug.Log("todos pontos " + (numero - 1));
-        // Debug.Log(Distance);
+        if (!_start) return;
+        
+        int numero = points.Count;
+        float distancia1 = Vector2.Distance(points[0], points[(numero - 1) /2]);
+        float distancia2 = Vector2.Distance(points[(numero-1)/2], points[(numero - 1)]);
+        _distance = distancia1 + distancia2;
+        
         if (Input.GetMouseButtonUp(0))
-            if(_points.Count <2)
+            if(points.Count <2)
             {
-                TiraLinha();
+                RemoveLineCount();
             }
 
     }
@@ -44,12 +52,12 @@ public class Line : MonoBehaviour
 
 
        
-            _points.Add(pos);
-          _renderer.positionCount++;
+        points.Add(pos);
+        lineRenderer.positionCount++;
 
-            _renderer.SetPosition(_renderer.positionCount - 1, pos);
+        lineRenderer.SetPosition(lineRenderer.positionCount - 1, pos);
 
-            _collider.points = _points.ToArray();
+        edgeCollider2D.points = points.ToArray();
 
 
 
@@ -58,15 +66,15 @@ public class Line : MonoBehaviour
 
     private bool CanAppend(Vector2 pos)
     {
-        if (_renderer.positionCount == 0)
+        if (lineRenderer.positionCount == 0)
             return true;
         
-        return Vector2.Distance(_renderer.GetPosition(_renderer.positionCount - 1), pos) > DrawManager.RESOLUTION;
+        return Vector2.Distance(lineRenderer.GetPosition(lineRenderer.positionCount - 1), pos) > DrawManager.Resolution;
     }
 
-    public void TiraLinha()
+    public void RemoveLineCount()
     {
-        _drawmanager.linha--;
+        _drawManager.ChangeLinesAmount(-1);
         Destroy(gameObject);
     }
 }

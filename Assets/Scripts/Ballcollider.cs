@@ -5,14 +5,10 @@ using UnityEngine;
 public class Ballcollider : MonoBehaviour
 {
 
-    private bool cancela;
-    private DrawManager _drawmanager;
+    private bool _cancel;
+    [SerializeField] private Line line;
     // Start is called before the first frame update
-
-    private void Start()
-    {
-        _drawmanager = FindObjectOfType<DrawManager>();
-    }
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Bola") )
@@ -36,14 +32,9 @@ public class Ballcollider : MonoBehaviour
 
     void Cancela()
     {
-        if (!cancela)
-        {
-            cancela = true;
-
-                _drawmanager.linha--;
-           
-            
-            Destroy(transform.parent.gameObject, 10f * Time.deltaTime);
-        }
+        if (_cancel) return;
+        _cancel = true;
+        line.drawManager.ChangeLinesAmount(-1);
+        Destroy(transform.parent.gameObject, 10f * Time.deltaTime);
     }
 }

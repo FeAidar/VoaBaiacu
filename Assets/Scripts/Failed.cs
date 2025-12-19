@@ -8,7 +8,7 @@ public class Failed : MonoBehaviour
     private bool BombaCaiu;
     public Animator Agua;
     private int Vida;
-    public Spawnerdeboia SpawnderdeBomba;
+    public Spawner SpawnderdeBomba;
     public bool mascara;
     private PowerUps _powerUps;
     public GameObject watersplash;

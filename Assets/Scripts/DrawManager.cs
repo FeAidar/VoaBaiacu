@@ -1,78 +1,93 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using Unity.Collections;
 using UnityEngine;
 
 public class DrawManager : MonoBehaviour
 {
-    private Camera _cam;
-    [SerializeField] private Line _linePrefab;
-
-    public const float RESOLUTION = 0.1f;
-
+    [SerializeField] private Line linePrefab;
+    private Camera _mainCamera;
+    [SerializeField] private int maxSimultaneousLines;
+    [SerializeField] private float lineSize;   
+    public const float Resolution = 0.1f;
     private Line _currentLine;
-    public int LimiteDeLinhas;
-    public int linha;
-    private bool naodesenha;
-    private bool check;
-    public float Tamanho;
-    
-    void Start()
+    [HideInInspector] public int currentTotalLines;
+    private bool _limitReached;
+    private bool _checkFingerUp;
+
+    private bool _running;
+
+    private void Awake()
     {
-        _cam = Camera.main;
+        _mainCamera = Camera.main;
+        GameManager.OnStartGame += StartLineManager;
+        GameManager.OnEndGame += EndLineManager;
     }
 
-    // Update is called once per frame
+    private void OnDestroy()
+    {
+        GameManager.OnStartGame -= StartLineManager;
+        GameManager.OnEndGame -= EndLineManager;
+    }
+
+    void StartLineManager() 
+    {
+     _running = true;
+    }
+
+    void EndLineManager()
+    {
+        _running = false;
+    }
+    
     void Update()
     {
-        Vector2 mousePos = _cam.ScreenToWorldPoint(Input.mousePosition);
-        if (linha != LimiteDeLinhas)
-            naodesenha = false;
-        else
-            naodesenha = true;
-
-        //Debug.Log(linha);
-
-
-        if (!naodesenha)
+        if (!_running) return;
+        
+        _limitReached = currentTotalLines == maxSimultaneousLines;
+        Vector2 mousePos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        if (!_limitReached)
             if (Input.GetMouseButtonDown(0))
-        {
+            {
 
-                _currentLine = Instantiate(_linePrefab, mousePos, Quaternion.identity);
-                
-   
+                _currentLine = Instantiate(linePrefab, mousePos, Quaternion.identity);
+                _currentLine.GetReference(this);
+                ChangeLinesAmount(1);
 
-        }
+            }
 
 
         if (Input.GetMouseButton(0))
         {
-            if (naodesenha)
+            if (_limitReached)
             {
-                check = true;
+                _checkFingerUp = true;
             }
     
-         if(_currentLine!=null)
-            if (_currentLine.Distance < Tamanho)
-           {
+            if(_currentLine)
+                if (_currentLine.Distance < lineSize)
+                        _currentLine.SetPosition(mousePos);
                 
-                if (_currentLine != null)
-                    _currentLine.SetPosition(mousePos);
-           }
 
             
         }
         
 
-            if(check)
+        if(_checkFingerUp)
         {
             if(Input.GetMouseButtonUp(0))
             {
               
                 _currentLine = null;
-                check = false;
+                _checkFingerUp = false;
                 
             }
         }
 
+    }
+
+    public void ChangeLinesAmount(int num)
+    {
+        currentTotalLines += num;
+        currentTotalLines = Mathf.Clamp(currentTotalLines, 0, maxSimultaneousLines);
     }
 }
