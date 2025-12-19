@@ -1,83 +1,108 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.Pool;
+using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
 {
-    public float min_X = -2f, max_X = 2f;
-    public float min_Y = -14f, max_Y = 14f;
-    public GameObject[] Objeto;
-    float screenRatio;
-    float widthOrtho;
-    private float TempodeSpawn;
-    private int VariacaoDeTempo;
-
-
-    public float TempoDeSpawnManha;
-    public float TempoDeSpawnTarde;
-    public float TempoDeSpawnoite;
-    public int VariacaoDeTempoManha;
-    public int VariacaoDeTempoTarde;
-    public int VariacaoDeTempoNoite;
-
+    
+   // [SerializeField] private bool usePoolSystem;
+    private Camera _camera;
+    private GameSettingsSO _settings;
+    private TimePeriod _timePeriod;
+    private HazardsSO _assignedHazard;
+    public HazardsSO AssignedHazard => _assignedHazard;
+    private ObjectPool<GameObject> pool;
+    
    private void Awake()
     {
-        TempodeSpawn = TempoDeSpawnManha;
-        VariacaoDeTempo = VariacaoDeTempoManha;
-        //Debug.Log("awake");
+        _camera = Camera.main;
+        GameManager.OnParseSettings += GetSettings;
+        GameManager.OnChangePeriod += GetPeriod;
+        GameManager.OnStartGame += Spawn;
+        GameManager.OnEndGame += StopSpawn;
     }
+   
+   public void GetAssignedHazard(HazardsSO assignedHazard)
+   {
+       _assignedHazard = assignedHazard;
+   }
+   
 
-    void Update()
+    private void OnDestroy()
     {
-      //  Debug.Log(TempodeSpawn);
+        GameManager.OnParseSettings -= GetSettings;
+        GameManager.OnChangePeriod -= GetPeriod;
+        GameManager.OnStartGame -= Spawn;
+        GameManager.OnEndGame -= StopSpawn;
     }
-    // Start is called before the first frame update
-    void OnEnable()
+
+    private void GetSettings(GameSettingsSO settings)
     {
+        _settings = settings;
+        CreatePool();
 
-        Invoke("Spawn", TempodeSpawn + Random.Range(TempodeSpawn * (VariacaoDeTempo * -0.01f), TempodeSpawn * (VariacaoDeTempo * 0.01f)));
 
     }
+
+    private void CreatePool()
+    {
+        pool = new ObjectPool<GameObject>(
+            createFunc: CreateItem,
+            actionOnGet: OnGet,
+            actionOnRelease: OnRelease,
+            actionOnDestroy: OnDestroyItem,
+            collectionCheck: true,   // helps catch double-release mistakes
+            defaultCapacity: 10,
+            maxSize: 50
+        );
+    }
+
+    private void GetPeriod(TimePeriod period)
+    {
+        _timePeriod = period;
+    }
+    
 
     void Spawn()
     {
-        float pos_X = Random.Range(min_X, max_X);
-        float pos_Y = Random.Range(min_Y, max_Y);
-        Vector3 temp = transform.position;
-        temp.x = pos_X;
-        temp.y = pos_Y;
-
-        Instantiate(Objeto[Random.Range(0, Objeto.Length)], temp, Quaternion.identity);
-
-
-        Invoke("Spawn", TempodeSpawn + Random.Range(TempodeSpawn * (VariacaoDeTempo * -0.01f), TempodeSpawn * (VariacaoDeTempo * 0.01f)));
-
+       
 
     }
 
-    void OnDisable()
+    void StopSpawn()
     {
-        CancelInvoke("Spawn");
+        
+    }
+    
+    private GameObject CreateItem()
+    {
+
+        GameObject gameObject = _assignedHazard.hazard;
+        gameObject.SetActive(false);
+        return gameObject;
     }
 
-    public void TemposManha()
+    // Called when an item is taken from the pool.
+    private void OnGet(GameObject gameObject)
     {
-        TempodeSpawn = TempoDeSpawnManha;
-        VariacaoDeTempo = VariacaoDeTempoManha;
-        }
+        gameObject.SetActive(true);
+    }
 
-    public void TemposTarde()
+    // Called when an item is returned to the pool.
+    private void OnRelease(GameObject gameObject)
     {
-        TempodeSpawn = TempoDeSpawnTarde;
-        VariacaoDeTempo = VariacaoDeTempoTarde;
+        gameObject.SetActive(false);
     }
-    public void TemposNoite()
+
+    // Called when the pool decides to destroy an item (e.g., above max size).
+    private void OnDestroyItem(GameObject gameObject)
     {
-        TempodeSpawn = TempoDeSpawnoite;
-        VariacaoDeTempo = VariacaoDeTempoNoite;
+        Destroy(gameObject);
     }
+    
+
 }
-
 
 
 

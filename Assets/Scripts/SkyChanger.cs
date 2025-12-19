@@ -39,8 +39,8 @@ public class SkyChanger : MonoBehaviour
         {
             if (!primeiramanhafoi)
             {
-                SpawnerDeBoia.TemposManha();
-                SpawnerDeBomba.TemposManha();
+              // SpawnerDeBoia.TemposManha();
+               // SpawnerDeBomba.TemposManha();
                 primeiramanhafoi = true;
             }
          }
@@ -50,8 +50,8 @@ public class SkyChanger : MonoBehaviour
             {
             if (!pordosolfoi)
             {
-                SpawnerDeBomba.TemposTarde();
-                SpawnerDeBoia.TemposTarde();
+               // SpawnerDeBomba.TemposTarde();
+              //  SpawnerDeBoia.TemposTarde();
                 animator.SetTrigger("PorDoSol");
                 pordosolfoi = true;
                
@@ -63,8 +63,8 @@ public class SkyChanger : MonoBehaviour
         {
             if (!noitefoi)
             {
-                SpawnerDeBoia.TemposNoite();
-                SpawnerDeBomba.TemposNoite();
+              //  SpawnerDeBoia.TemposNoite();
+              //  SpawnerDeBomba.TemposNoite();
                 animator.SetTrigger("Noite");
                 noitefoi = true;
             }
@@ -75,8 +75,8 @@ public class SkyChanger : MonoBehaviour
         {
             if (!manhafoi)
             {
-                SpawnerDeBoia.TemposManha();
-                SpawnerDeBomba.TemposManha();
+              //  SpawnerDeBoia.TemposManha();
+              //  SpawnerDeBomba.TemposManha();
                 animator.SetTrigger("NovaManha");
                 manhafoi = true;
             }

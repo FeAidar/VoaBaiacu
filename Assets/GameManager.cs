@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Collections;
 using UnityEditor;
 using UnityEngine;
@@ -24,7 +25,9 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] private DrawManager drawManager;
     [SerializeField] private GameSettingsSO settings;
+    //[SerializeField] private Spawner genericSpawner;
     private bool _canPlay;
+    [SerializeField] private List<Spawner> hazards = new List<Spawner>();
 
     private void Awake()
     {
@@ -41,8 +44,7 @@ public class GameManager : MonoBehaviour
     private void Setup(int period)
     {
         currentPeriod = settings.dayPeriods[period].period;
-        Debug.Log(currentPeriod);
-        currentPeriodTime = 0f;
+       currentPeriodTime = 0f;
         _maxPeriodTime = settings.dayPeriods[period].duration;
 
     }
@@ -92,10 +94,48 @@ public class GameManager : MonoBehaviour
 
     private void StartSetup()
     {
-        OnParseSettings?.Invoke(settings);
+        
         Setup(0);
+        CreateSpawners();
+        OnParseSettings?.Invoke(settings);
+        OnChangePeriod?.Invoke(currentPeriod);
         OnStartGame?.Invoke();
     }
+
+    private void CreateSpawners()
+    {
+        foreach (var day in settings.dayPeriods)
+        {
+            foreach (Hazards hazard in day.hazards)
+            {
+                var alreadySpawned = false;
+                if (hazards.Count > 0)
+                {
+                    
+                    foreach (Spawner currentSpawners in hazards)
+                    {
+                        if (currentSpawners.AssignedHazard == hazard.hazard)
+                            alreadySpawned = true;
+                    }
+                    
+                }
+                if (!alreadySpawned)
+                {
+                    var newObject = new GameObject();
+                    newObject.name = hazard.hazard.name;
+                    newObject.AddComponent<Spawner>().GetAssignedHazard(hazard.hazard);
+                    hazards.Add(newObject.GetComponent<Spawner>());
+                }
+
+               
+            }
+        }
+    
+
+
+
+    }
+    
 
     private void ChangePeriodOfDay()
     {
