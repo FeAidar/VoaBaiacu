@@ -90,7 +90,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!114 &6299981042153608284
 MonoBehaviour:
@@ -600,7 +600,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!95 &1057003032244972400
 Animator:
@@ -704,7 +704,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!1 &3959762971973900343
 GameObject:
@@ -963,7 +963,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!114 &3717307673649744589
 MonoBehaviour:
@@ -1447,7 +1447,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!114 &5232653671864310642
 MonoBehaviour:
@@ -2086,7 +2086,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!114 &2317375935083969209
 MonoBehaviour:
@@ -2366,7 +2366,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!114 &6147240905072619466
 MonoBehaviour:
@@ -2519,8 +2519,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f72d087b4c0c1b84dad6e4a2abd284cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Boca: {fileID: 6615080714986033433}
-  Olhos: {fileID: 1057003032244972400}
+  mouth: {fileID: 6615080714986033433}
+  eyes: {fileID: 1057003032244972400}
 --- !u!114 &8916212662518659813
 MonoBehaviour:
   m_ObjectHideFlags: 0
