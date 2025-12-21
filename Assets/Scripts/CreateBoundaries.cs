@@ -1,41 +1,32 @@
 ﻿using System;
 using UnityEngine;
-
-namespace DefaultNamespace
-{
     public class CreateBoundaries : MonoBehaviour
     {
-        [SerializeField] private Transform[] leftBoundary;
         [SerializeField] private Transform[] rightBoundary;
-        private Camera _camera;
-        private float _lastAspect;
+        [SerializeField] private Transform[] leftBoundary;
+
         private void Awake()
         {
-            _camera = Camera.main;
-            _lastAspect= _camera.aspect;
-            SetupBoundaries();
+            ScreenBounds.OnChange += SetupBoundaries;
         }
 
-        private void FixedUpdate()
+        private void OnDestroy()
         {
-            if (_camera.aspect == _lastAspect) return;
-                SetupBoundaries();
-                _lastAspect= _camera.aspect;
+           ScreenBounds.OnChange -= SetupBoundaries;
         }
+        
 
-        private void SetupBoundaries()
+        private void SetupBoundaries(Vector3 topLeftCorner, Vector3 downRightCorner)
         {
-            Vector3 newPos = _camera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, _camera.nearClipPlane));
-            Vector3 newPos2 = _camera.ScreenToWorldPoint(new Vector3(0, Screen.height, _camera.nearClipPlane));
-            foreach (Transform child in leftBoundary)
-            {
-                child.position =  new Vector3(newPos.x, child.position.y, child.position.z);
-            }
-
+         
             foreach (Transform child in rightBoundary)
             {
-                child.position =  new Vector3(newPos2.x, child.position.y, child.position.z);
+                child.position =  new Vector3(topLeftCorner.x, child.position.y, child.position.z);
+            }
+
+            foreach (Transform child in leftBoundary)
+            {
+                child.position =  new Vector3(downRightCorner.x, child.position.y, child.position.z);
             }
         }
     }
-}

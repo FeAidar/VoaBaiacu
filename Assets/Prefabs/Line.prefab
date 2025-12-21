@@ -141,9 +141,9 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingLayerID: -1053673337
+  m_SortingLayer: 1
+  m_SortingOrder: 50
   m_Positions: []
   m_Parameters:
     serializedVersion: 3
@@ -214,7 +214,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 3540975532335003394}
   edgeCollider2D: {fileID: 2722091238491358955}
-  points: []
 --- !u!114 &-4013914906566657948
 MonoBehaviour:
   m_ObjectHideFlags: 0

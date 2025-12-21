@@ -26,6 +26,7 @@ public class StartMenu : MonoBehaviour
     private bool _gameStarted = false;
     private SceneLoader _sceneLoader;
     [SerializeField] private int sceneToUnload;
+    [SerializeField] private int sceneToLoad;
 
     private void Awake()
     {
@@ -45,6 +46,7 @@ public class StartMenu : MonoBehaviour
     {
         if (_gameStarted) return;
         _gameStarted = true;
+        _sceneLoader.LoadScene(sceneToLoad);
         _blurTween?.Kill();
         _canvasTween?.Kill();
         gameStartSound.Play();
@@ -62,10 +64,12 @@ public class StartMenu : MonoBehaviour
 
     private IEnumerator WaitForTimelineEnd()
     {
-        while (introCutscene.state!= PlayState.Paused && introCutscene.time < introCutscene.duration)
+        while (introCutscene.state == PlayState.Playing)
         {
             yield return null;
+            Debug.Log("Playing timeline");
         }
+        Debug.Log("Not playing timeline anymore");
         DOVirtual.DelayedCall(timeBeforeStartingGameplay,()=>
         {
             _sceneLoader.UnloadScene(sceneToUnload);

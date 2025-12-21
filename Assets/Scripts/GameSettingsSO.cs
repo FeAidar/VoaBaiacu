@@ -5,6 +5,14 @@ using UnityEngine;
 public class GameSettingsSO : ScriptableObject
 {
     public DayPeriod[]  dayPeriods;
+    public SpawningTypes[] spawningTypes;
+}
+[System.Serializable]
+public struct SpawningTypes
+{
+    public spawnBounds bounds;
+    public Spawner spawnerType;
+
 }
 
 [System.Serializable]

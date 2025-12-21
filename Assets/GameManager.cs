@@ -16,8 +16,8 @@ public class GameManager : MonoBehaviour
     public static event ChangePeriod OnChangePeriod;
     public delegate void EndGame();
     public static event EndGame OnEndGame;
-    public bool DEBUGplay;
-    
+   
+    [Header("Settings")]
     [SerializeField]  private TimePeriod currentPeriod;
     [SerializeField] private float currentPeriodTime;
     [SerializeField] private float currentTotalTime;
@@ -29,8 +29,17 @@ public class GameManager : MonoBehaviour
     private bool _canPlay;
     [SerializeField] private List<Spawner> hazards = new List<Spawner>();
 
+     
+    [Header("Debug Stuff")]
+    public bool ForcePlay;
+    public GameObject DebugCamera;
     private void Awake()
     {
+        if (!Camera.main)
+        {
+           DebugCamera.SetActive(true);
+           
+        }
         OnStartGame += StartPlaying;
         StartMenu.OnGameStarted += StartSetup;
     }
@@ -50,10 +59,10 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (DEBUGplay)
+        if (ForcePlay)
         {
             StartSetup();
-          DEBUGplay = false;
+          ForcePlay = false;
         }
 
         if (!_canPlay) return;
@@ -121,10 +130,18 @@ public class GameManager : MonoBehaviour
                 }
                 if (!alreadySpawned)
                 {
-                    var newObject = new GameObject();
-                    newObject.name = hazard.hazard.name;
-                    newObject.AddComponent<Spawner>().GetAssignedHazard(hazard.hazard);
-                    hazards.Add(newObject.GetComponent<Spawner>());
+                   
+                    foreach (var spawningType in settings.spawningTypes)
+                    {
+                        if (spawningType.bounds == hazard.hazard.placeToSpawn)
+                        {
+                            var newObject = Instantiate(spawningType.spawnerType);
+                            newObject.name = hazard.hazard.name + " spawner";
+                            newObject.GetAssignedHazard(hazard.hazard);
+                            hazards.Add(newObject.GetComponent<Spawner>());
+                        }
+                    }
+              
                 }
 
                
