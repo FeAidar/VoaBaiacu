@@ -1,72 +1,128 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class Line : MonoBehaviour
 {
-    [SerializeField] private LineRenderer _renderer;
-    [SerializeField] private EdgeCollider2D _collider;
-    private DrawManager _drawmanager;
-    public float Distance;
-       public List<Vector2> _points = new List<Vector2>();
-    // Start is called before the first frame update
-    void Start()
-    {
-        _collider.transform.position -= transform.position;
-        _drawmanager = FindObjectOfType<DrawManager>();
-        _drawmanager.linha++;
+    [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private EdgeCollider2D edgeCollider2D;
+    private float _timeLeft;
+    private DrawManager _drawManager;
 
+    private float _distance;
+    public float Distance => _distance;
+
+    private List<Vector2> points = new List<Vector2>();
+    private bool _start;
+
+    public void SetPool(DrawManager manager)
+    {
+        _drawManager = manager;
     }
 
-    // Update is called once per frame
+    public void ResetLine()
+    {
+        _start = true;
+        _distance = 0f;
+
+        points.Clear();
+
+        // RESET CORRETO
+        lineRenderer.positionCount = 0;
+        edgeCollider2D.points = System.Array.Empty<Vector2>();
+        edgeCollider2D.enabled = true;
+    }
+
     void Update()
     {
-        int numero = _points.Count;
-        float distancia1 = Vector2.Distance(_points[0], _points[(numero - 1) /2]);
-        float distancia2 = Vector2.Distance(_points[(numero-1)/2], _points[(numero - 1)]);
-        Distance = distancia1 + distancia2;
-        //Debug.Log("metade dos pontos " + (numero - 1) / 2);
-       // Debug.Log("todos pontos " + (numero - 1));
-        // Debug.Log(Distance);
-        if (Input.GetMouseButtonUp(0))
-            if(_points.Count <2)
-            {
-                TiraLinha();
-            }
+        if (!_start)
+            return;
+        
 
+        // 🔒 PROTEÇÃO ABSOLUTA
+        if (points.Count < 2)
+        {
+            _distance = 0f;
+
+            if (Input.GetMouseButtonUp(0))
+                ReturnToPool();
+
+            return;
+        }
+
+        int mid = points.Count / 2;
+        _distance =
+            Vector2.Distance(points[0], points[mid]) +
+            Vector2.Distance(points[mid], points[^1]);
+        
+        if (_timeLeft < _drawManager.LineDuration)
+        {
+            _timeLeft+= Time.deltaTime;
+        }
+        else
+        {
+            ReturnToPool();
+        }
     }
 
-    public void SetPosition(Vector2 pos)
+    public void SetPosition(Vector2 worldPos)
     {
-        if (!CanAppend(pos))
+        if (!CanAppend(worldPos))
             return;
 
+        points.Add(worldPos);
 
+        // LineRenderer (world space)
+        lineRenderer.positionCount = points.Count;
+        lineRenderer.SetPosition(points.Count - 1, worldPos);
 
-       
-            _points.Add(pos);
-          _renderer.positionCount++;
+        // EdgeCollider2D precisa de 2 pontos no mínimo
+        Vector2[] localPoints;
 
-            _renderer.SetPosition(_renderer.positionCount - 1, pos);
+        if (points.Count == 1)
+        {
+            Vector2 p = transform.InverseTransformPoint(points[0]);
+            localPoints = new Vector2[] { p, p };
+        }
+        else
+        {
+            localPoints = new Vector2[points.Count];
+            for (int i = 0; i < points.Count; i++)
+            {
+                localPoints[i] = transform.InverseTransformPoint(points[i]);
+            }
+        }
 
-            _collider.points = _points.ToArray();
+        edgeCollider2D.points = localPoints;
 
-
-
-
+      
     }
+
+
 
     private bool CanAppend(Vector2 pos)
     {
-        if (_renderer.positionCount == 0)
+        if (points.Count == 0)
             return true;
-        
-        return Vector2.Distance(_renderer.GetPosition(_renderer.positionCount - 1), pos) > DrawManager.RESOLUTION;
+
+        return Vector2.Distance(points[^1], pos) > DrawManager.Resolution;
     }
 
-    public void TiraLinha()
+    public void ReturnToPool()
     {
-        _drawmanager.linha--;
-        Destroy(gameObject);
+        _drawManager.RemoveCurrentLine(this);
+        _timeLeft = 0f;
+        _start = false;
+        edgeCollider2D.enabled = false;
+        int linePoints = lineRenderer.positionCount;
+        DOTween.To(()=> linePoints, x=> linePoints = x, 0, 0.15f).OnUpdate(()=> lineRenderer.positionCount = linePoints).OnComplete(() =>
+        {
+            _drawManager.ChangeLinesAmount(-1);
+            _drawManager.ReturnLineToPool(this);
+            
+        });
+   
     }
 }

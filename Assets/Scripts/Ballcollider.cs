@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,14 +6,15 @@ using UnityEngine;
 public class Ballcollider : MonoBehaviour
 {
 
-    private bool cancela;
-    private DrawManager _drawmanager;
-    // Start is called before the first frame update
+    private bool _cancel;
+    [SerializeField] private Line line;
 
-    private void Start()
+    private void OnEnable()
     {
-        _drawmanager = FindObjectOfType<DrawManager>();
+        _cancel = false;
     }
+    // Start is called before the first frame update
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Bola") )
@@ -36,14 +38,8 @@ public class Ballcollider : MonoBehaviour
 
     void Cancela()
     {
-        if (!cancela)
-        {
-            cancela = true;
-
-                _drawmanager.linha--;
-           
-            
-            Destroy(transform.parent.gameObject, 10f * Time.deltaTime);
-        }
+        if (_cancel) return;
+        _cancel = true;
+        line.ReturnToPool();
     }
 }

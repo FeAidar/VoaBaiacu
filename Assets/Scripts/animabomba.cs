@@ -10,8 +10,7 @@ public class animabomba : MonoBehaviour
 
     private void Start()
     {
-        bomba = this.GetComponentInChildren<Animator>();
-        Tempo = this.GetComponent<Timer>().tempo;
-        bomba.speed = 1 / Tempo;
+    
+       
     }
 }

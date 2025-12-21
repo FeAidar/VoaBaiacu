@@ -29,15 +29,15 @@ public class Timer : MonoBehaviour
             _timeRemaining = 0;
             if (Linha)
             if(!chamou)
-                GetComponent<Line>().TiraLinha();
+                //GetComponent<Line>().RemoveLineCount();
 
             if (Arco)
                 if (!chamou)
-                    GetComponent<Boia>().StartCoroutine("TiraArco");
+                    GetComponent<Floater>().StartCoroutine("TiraArco");
 
             if (Bomba)
                 if (!chamou)
-                    GetComponent<Bomba>().StartCoroutine("TiraBomba");
+                    GetComponent<Bomb>().StartCoroutine("TiraBomba");
             chamou = true;
         }
 

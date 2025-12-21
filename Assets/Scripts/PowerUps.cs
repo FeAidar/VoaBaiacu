@@ -23,7 +23,7 @@ public class PowerUps : MonoBehaviour
     public GameObject CanvasParaquedas;
     private bool perdeparaqueda;
     private bool check;
-    private Menu _menu;
+    private StartMenu _startMenu;
     public AudioSource PowerUP;
 
     private void Start()
@@ -33,7 +33,7 @@ public class PowerUps : MonoBehaviour
         pesonormal = GetComponent<Rigidbody2D>().mass;
         gravidadenormal = GetComponent<Rigidbody2D>().gravityScale;
         _failed = FindObjectOfType<Failed>();
-        _menu = FindObjectOfType<Menu>();
+        _startMenu = FindObjectOfType<StartMenu>();
 
     }
 
@@ -124,7 +124,7 @@ public class PowerUps : MonoBehaviour
                 }
                 else
                 {
-                   _menu.Perdeu();
+                  // _startMenu.Perdeu();
                 }
 
             }
