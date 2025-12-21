@@ -255,11 +255,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1778
-        width: 288
-        height: 270
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 1775
+        width: 247
+        height: 258
+      alignment: 9
+      pivot: {x: 0.33622453, y: 0.025600227}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -275,12 +275,12 @@ TextureImporter:
       name: Animacao Bomba_1
       rect:
         serializedVersion: 2
-        x: 288
-        y: 1778
-        width: 288
-        height: 270
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 284
+        y: 1772
+        width: 257
+        height: 261
+      alignment: 9
+      pivot: {x: 0.34663314, y: 0.039002165}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -296,12 +296,12 @@ TextureImporter:
       name: Animacao Bomba_2
       rect:
         serializedVersion: 2
-        x: 576
-        y: 1778
-        width: 288
-        height: 270
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 544
+        y: 1773
+        width: 278
+        height: 259
+      alignment: 9
+      pivot: {x: 0.41045374, y: 0.035442337}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -317,12 +317,12 @@ TextureImporter:
       name: Animacao Bomba_3
       rect:
         serializedVersion: 2
-        x: 864
-        y: 1778
-        width: 288
-        height: 270
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 860
+        y: 1768
+        width: 262
+        height: 265
+      alignment: 9
+      pivot: {x: 0.32580614, y: 0.057703327}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -338,12 +338,12 @@ TextureImporter:
       name: Animacao Bomba_4
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 1778
-        width: 288
-        height: 270
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1148
+        y: 1772
+        width: 260
+        height: 257
+      alignment: 9
+      pivot: {x: 0.32047683, y: 0.039898943}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -359,12 +359,12 @@ TextureImporter:
       name: Animacao Bomba_5
       rect:
         serializedVersion: 2
-        x: 1440
-        y: 1778
-        width: 288
-        height: 270
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1436
+        y: 1769
+        width: 235
+        height: 262
+      alignment: 9
+      pivot: {x: 0.35875788, y: 0.05659776}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -377,36 +377,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Animacao Bomba_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1508
-        width: 288
-        height: 270
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4b8f5a153c23f9360800000000000000
-      internalID: 7178512145521703092
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Animacao Bomba_7
       rect:
         serializedVersion: 2
-        x: 288
-        y: 1508
-        width: 288
-        height: 270
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 572
+        y: 1476
+        width: 248
+        height: 292
+      alignment: 9
+      pivot: {x: 0.32852, y: 0.12701792}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -422,12 +401,12 @@ TextureImporter:
       name: Animacao Bomba_8
       rect:
         serializedVersion: 2
-        x: 576
-        y: 1508
-        width: 288
-        height: 270
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 1498
+        width: 239
+        height: 252
+      alignment: 9
+      pivot: {x: 0.36112207, y: 0.071930416}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -443,12 +422,12 @@ TextureImporter:
       name: Animacao Bomba_9
       rect:
         serializedVersion: 2
-        x: 864
-        y: 1508
-        width: 288
-        height: 270
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 284
+        y: 1496
+        width: 257
+        height: 261
+      alignment: 9
+      pivot: {x: 0.32241726, y: 0.06284703}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -461,36 +440,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Animacao Bomba_10
-      rect:
-        serializedVersion: 2
-        x: 1152
-        y: 1508
-        width: 288
-        height: 270
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c62e5599497f6f290800000000000000
-      internalID: -7856820282301488532
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Animacao Bomba_11
       rect:
         serializedVersion: 2
-        x: 1440
-        y: 1508
-        width: 288
-        height: 270
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 860
+        y: 1504
+        width: 238
+        height: 248
+      alignment: 9
+      pivot: {x: 0.3431058, y: 0.035749372}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -506,12 +464,12 @@ TextureImporter:
       name: Animacao Bomba_12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1238
-        width: 288
-        height: 270
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1128
+        y: 1504
+        width: 242
+        height: 236
+      alignment: 9
+      pivot: {x: 0.4314217, y: 0.0385137}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -527,12 +485,12 @@ TextureImporter:
       name: Animacao Bomba_13
       rect:
         serializedVersion: 2
-        x: 288
-        y: 1238
-        width: 288
-        height: 270
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1431
+        y: 1483
+        width: 336
+        height: 274
+      alignment: 9
+      pivot: {x: 0.2653852, y: 0.106300965}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -545,43 +503,85 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Animacao Bomba_14
+      name: Animacao Bomba_17
       rect:
         serializedVersion: 2
-        x: 576
-        y: 1238
-        width: 288
-        height: 270
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 1228
+        width: 215
+        height: 244
+      alignment: 9
+      pivot: {x: 0.40351215, y: 0.057895847}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e2c8f19ddc0feb00800000000000000
-      internalID: 859920199627358950
+      spriteID: 44e04f4f15f9d1c499609144364ac748
+      internalID: 1721571323
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Animacao Bomba_15
+      name: Animacao Bomba_19
       rect:
         serializedVersion: 2
-        x: 864
-        y: 1238
-        width: 288
-        height: 270
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 254
+        y: 1232
+        width: 244
+        height: 216
+      alignment: 9
+      pivot: {x: 0.49149796, y: 0.04860659}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0aefd2a9b0c806670800000000000000
-      internalID: 8529971675698953888
+      spriteID: a4b5a65ebd61f9c4bae6c8a284acb288
+      internalID: -2101901346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Animacao Bomba_21
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 1229
+        width: 224
+        height: 243
+      alignment: 9
+      pivot: {x: 0.5046305, y: 0.05607649}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b279ff686f05b646a14d83247e07136
+      internalID: 1629388095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Animacao Bomba_22
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 1208
+        width: 256
+        height: 244
+      alignment: 9
+      pivot: {x: 0.4918964, y: 0.11315868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bcae3bd670067948972e145ce3058ab
+      internalID: 696045608
       vertices: []
       indices: 
       edges: []
@@ -601,17 +601,24 @@ TextureImporter:
       Animacao Bomba_7: 5279235464954412946
       Animacao Bomba_15: 8529971675698953888
       Animacao Bomba_5: 2699347219167771163
+      Animacao Bomba_17: 1721571323
       Animacao Bomba_3: 7208106618503801354
+      Animacao Bomba_19: -2101901346
       Animacao Bomba_11: -701477382174302727
+      Animacao Bomba_22: 696045608
       Animacao Bomba_13: -2831918055479682322
+      Animacao Bomba_18: -779180611
+      Animacao Bomba_16: -416791212
       Animacao Bomba_1: -3148509899066630411
       Animacao Bomba_9: 8770627596044833528
+      Animacao Bomba_20: 1454611104
       Animacao Bomba_10: -7856820282301488532
       Animacao Bomba_6: 7178512145521703092
       Animacao Bomba_12: 3295607787324261968
       Animacao Bomba_0: 971997544458008001
       Animacao Bomba_4: 5974533347851991120
       Animacao Bomba_8: -6602658292377379381
+      Animacao Bomba_21: 1629388095
       Animacao Bomba_14: 859920199627358950
   spritePackingTag: 
   pSDRemoveMatte: 0

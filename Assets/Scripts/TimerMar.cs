@@ -6,14 +6,14 @@ public class TimerMar : MonoBehaviour
 {
     public float tempo;
     private float _timeRemaining;
-    private Failed _failed;
+    private WaterManager _waterManager;
     private bool Foi;
 
 
     void OnEnable()
     {
         _timeRemaining = tempo;
-        _failed = FindObjectOfType<Failed>();
+        _waterManager = FindObjectOfType<WaterManager>();
         Foi = false;
     }
 
@@ -29,8 +29,8 @@ public class TimerMar : MonoBehaviour
             if (!Foi)
             {
                 _timeRemaining = 0;
-                _failed.VoltaMar();
-               _failed.MarCausaDano = false;
+                //_waterManager.VoltaMar();
+              // _waterManager.MarCausaDano = false;
                 Foi = true;
             }
         }

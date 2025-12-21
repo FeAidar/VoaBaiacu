@@ -16,11 +16,7 @@ public class ScoreGiver : MonoBehaviour
     const string bestID = "Score_Best";
     int highScore;
     public int scoreValue = 0;
-    public List<AudioSource> SonsBatidas = new List<AudioSource>();
-    public AudioSource BatidaAgua;
-    public AudioSource BombaExplode;
-    public AudioSource Boia;
-    public AudioSource Somboia;
+
 
 
 
@@ -99,7 +95,6 @@ public class ScoreGiver : MonoBehaviour
         if (!Desliga)
         {
             Desliga = true;
-            SonsBatidas[Random.Range(0, (SonsBatidas.Count - 1))].Play();
             AddScore(PontosLinha);
         }
         yield return new WaitForSecondsRealtime (0.2f);
@@ -115,7 +110,7 @@ public class ScoreGiver : MonoBehaviour
         {
             Desliga = true;
             AddScore(PontosArco);
-            Boia.Play();
+          
         }
         yield return new WaitForSecondsRealtime(0.2f);
         Desliga = false;
@@ -129,7 +124,7 @@ public class ScoreGiver : MonoBehaviour
         {
             Desliga = true;
             AddScore(PontosAgua);
-            BatidaAgua.Play();
+     
         }
         yield return new WaitForSecondsRealtime(0.2f);
         Desliga = false;
@@ -143,7 +138,7 @@ public class ScoreGiver : MonoBehaviour
         {
             Desliga = true;
             AddScore(PontosBomba);
-            BombaExplode.Play();
+       
         }
         yield return new WaitForSecondsRealtime(0.2f);
         Desliga = false;
@@ -156,8 +151,7 @@ public class ScoreGiver : MonoBehaviour
         if (!Desliga)
         {
             Desliga = true;
-            SonsBatidas[Random.Range(0, (SonsBatidas.Count - 1))].Play();
-           
+          
         }
         yield return new WaitForSecondsRealtime(0.2f);
         Desliga = false;
@@ -171,7 +165,7 @@ public class ScoreGiver : MonoBehaviour
         if (!Desliga)
         {
             Desliga = true;
-           Somboia.Play();
+  
 
         }
         yield return new WaitForSecondsRealtime(0.2f);

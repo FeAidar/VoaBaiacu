@@ -1,39 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
+using System;
 using DG.Tweening;
-using UnityEditor;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class DayArt : MonoBehaviour
 {
    [SerializeField] private GameObject art;
-   [SerializeField] private SpriteRenderer[] sky;
-   [SerializeField] private SpriteRenderer[] clouds;
+   [SerializeField] private SpritesAndTimes sky;
+   [SerializeField] private SpritesAndTimes clouds;
    public void EnterArt()
    {
       if(art.activeSelf) return;
-      foreach (SpriteRenderer r in sky)
+      foreach (SpriteRenderer r in sky.sprites)
       {
         var color = r.color;
         color.a = 0f;
         r.color = color;
       }     
-      foreach (SpriteRenderer r in clouds)
+      foreach (SpriteRenderer r in clouds.sprites)
       {
          var color = r.color;
          color.a = 0f;
          r.color = color;
       }
       art.SetActive(true);
-      foreach (SpriteRenderer r in sky)
+      foreach (SpriteRenderer r in sky.sprites)
       {
-         r.DOFade(1f,1.5f);
+        r.DOFade(1,Random.Range(sky.entryAnimationDuration.minAnimationDuration,sky.entryAnimationDuration.maxAnimationDuration)).SetDelay(Random.Range(sky.entryAnimationDuration.minAnimationDelay,sky.entryAnimationDuration.maxAnimationDelay));
          
       }
-      foreach (SpriteRenderer r in clouds)
+      foreach (SpriteRenderer r in clouds.sprites)
       {
-         r.DOFade(Random.Range(0.4f, 0.6f),Random.Range(1.5f, 2f)).SetDelay(Random.Range(0f,1f));
+         r.DOFade(Random.Range(clouds.entryAnimationDuration.minAlphaColor, clouds.entryAnimationDuration.maxAlphaColor),Random.Range(clouds.entryAnimationDuration.minAnimationDuration,clouds.entryAnimationDuration.maxAnimationDuration)).SetDelay(Random.Range(clouds.entryAnimationDuration.minAnimationDelay,clouds.entryAnimationDuration.maxAnimationDelay));
          
       }
       
@@ -43,15 +41,16 @@ public class DayArt : MonoBehaviour
    {
       if (!art.activeSelf) return;
      
-      foreach (SpriteRenderer r in clouds)
+      foreach (SpriteRenderer r in clouds.sprites)
       {
-         r.DOFade(0f,1.5f).SetDelay(Random.Range(0f,.5f));
+         r.DOFade(0,Random.Range(clouds.exitAnimationDuration.minAnimationDuration,clouds.exitAnimationDuration.maxAnimationDuration)).SetDelay(Random.Range(clouds.exitAnimationDuration.minAnimationDelay,clouds.exitAnimationDuration.maxAnimationDelay));
          
       }
       
-      foreach (SpriteRenderer r in sky)
+      foreach (SpriteRenderer r in sky.sprites)
       {
-         r.DOFade(0f, 2f).OnComplete(() =>
+         r.DOFade(0,Random.Range(sky.exitAnimationDuration.minAnimationDuration,sky.exitAnimationDuration.maxAnimationDuration)).SetDelay(Random.Range(sky.exitAnimationDuration.minAnimationDelay,sky.exitAnimationDuration.maxAnimationDelay))
+            .OnComplete(() =>
          {
             art.SetActive(false);
          });
@@ -59,9 +58,29 @@ public class DayArt : MonoBehaviour
       }
 
 
+       
 
    }
    
    }
+
+[Serializable]
+public struct SpritesAndTimes
+{
+   public SpriteRenderer[] sprites;
+   public AnimationDuration entryAnimationDuration;
+   public AnimationDuration exitAnimationDuration;
+
+}
+[Serializable]
+public struct AnimationDuration
+{
+   [Range(0,10)]public float minAnimationDuration;
+   [Range(0,10)] public float maxAnimationDuration;
+   [Range(0,10)]public float minAnimationDelay;
+   [Range(0,10)] public float maxAnimationDelay;
+   [Range(0, 1)] public float minAlphaColor;
+   [Range(0, 1)] public float maxAlphaColor;
+}
    
 

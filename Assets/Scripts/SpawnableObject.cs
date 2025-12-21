@@ -1,15 +1,20 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 
 public class SpawnableObject : MonoBehaviour
     {
         protected Spawner spawner;
+        protected HazardsSO hazardType;
+        public HazardsSO HazardType => hazardType;
         [SerializeField] private Renderer mainRenderer;
         [SerializeField] protected float activeDuration;
         [SerializeField] protected Collider2D[] col2D;
         [SerializeField] protected Rigidbody2D rb2D;
+        public Rigidbody2D Rigidbody2D => rb2D;
+        [FormerlySerializedAs("soundEmitter")] [SerializeField] protected MovableSoundEmitter movableSoundEmitter;
         private bool _timedOut = false;
        
 
@@ -46,6 +51,7 @@ public class SpawnableObject : MonoBehaviour
         public void GetSpawner(Spawner originalSpawner)
         {
             spawner = originalSpawner;
+            hazardType = spawner.AssignedHazard;
         }
         
         void Update()
@@ -76,6 +82,12 @@ public class SpawnableObject : MonoBehaviour
         protected virtual void ReturnToPool()
         {
             spawner.ReleaseToPool(this.gameObject);
+        }
+
+        public virtual void CauseDamage()
+        {
+            
+
         }
         
     }

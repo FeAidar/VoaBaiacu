@@ -45,3 +45,17 @@ MonoBehaviour:
     spawnerType: {fileID: 3908078916181400104, guid: 07661385c259b6a4fabfede3f6a5f725, type: 3}
   - bounds: 1
     spawnerType: {fileID: 6875427667375383771, guid: bb655fde624a59b48beade7959224da5, type: 3}
+  poisonousWaters:
+  - hazard: {fileID: 11400000, guid: efd8f963fbb0fd14cbadf4c695352290, type: 2}
+    waterType: 1
+    duration: 15
+  - hazard: {fileID: 11400000, guid: 566584346219768469ad343711246cd1, type: 2}
+    waterType: 2
+    duration: 15
+  waterVfxPools:
+  - type: 0
+    pool: {fileID: 8534090112935694284, guid: 478465d07ced3f241a60fca58ed97999, type: 3}
+  - type: 1
+    pool: {fileID: 7587396630829148496, guid: bbbd1e542e13b7e44a874763714ca696, type: 3}
+  - type: 2
+    pool: {fileID: 3006394712120243223, guid: 8235dd8650d54a647affb7e4e5c4ab93, type: 3}

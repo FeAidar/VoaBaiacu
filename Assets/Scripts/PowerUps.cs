@@ -17,7 +17,7 @@ public class PowerUps : MonoBehaviour
     private float pontoinicial;
     private bool valendo;
     public int Vida = 3;
-    private Failed _failed;
+    private WaterManager _waterManager;
     private bool _mascara;
     public GameObject CanvasMascara;
     public GameObject CanvasParaquedas;
@@ -32,7 +32,7 @@ public class PowerUps : MonoBehaviour
         pontoinicial = Score.scoreValue;
         pesonormal = GetComponent<Rigidbody2D>().mass;
         gravidadenormal = GetComponent<Rigidbody2D>().gravityScale;
-        _failed = FindObjectOfType<Failed>();
+        _waterManager = FindObjectOfType<WaterManager>();
         _startMenu = FindObjectOfType<StartMenu>();
 
     }
@@ -52,12 +52,13 @@ public class PowerUps : MonoBehaviour
                     Paraquedas();
                     valendo = true;
                 }
+
                 if (sorteio == 2)
                 {
                     Mascara();
                     valendo = true;
                 }
-                
+
             }
 
 
@@ -85,7 +86,7 @@ public class PowerUps : MonoBehaviour
         mascara.SetActive(true);
         CanvasMascara.SetActive(true);
         _mascara = true;
-        
+
 
 
     }
@@ -97,8 +98,8 @@ public class PowerUps : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Mar"))
         {
-            
-            if (_failed.MarCausaDano == true)
+
+            //   if (_waterManager.MarCausaDano == true)
             {
 
                 if (_mascara == true)
@@ -124,108 +125,110 @@ public class PowerUps : MonoBehaviour
                 }
                 else
                 {
-                  // _startMenu.Perdeu();
+                    // _startMenu.Perdeu();
                 }
+
+                // }
+
+
 
             }
 
-
-
-        }
-
-        if (collision.gameObject.CompareTag("Linha"))
-        {
-
-           // Debug.Log("colidiu");
-            if (perdeparaqueda)
+            if (collision.gameObject.CompareTag("Linha"))
             {
 
-                if (Vida > 0)
+                // Debug.Log("colidiu");
+                if (perdeparaqueda)
                 {
 
+                    if (Vida > 0)
+                    {
 
-                    StartCoroutine("PerdeVida");
+
+                        StartCoroutine("PerdeVida");
+                    }
+
+                    if (Vida <= 0)
+                    {
+                        this.GetComponent<Rigidbody2D>().AddForce(transform.up * 5f, ForceMode2D.Impulse);
+                        StartCoroutine("Termina");
+                    }
+
                 }
-
-                if (Vida <= 0)
-                {
-                    this.GetComponent<Rigidbody2D>().AddForce(transform.up * 5f, ForceMode2D.Impulse);
-                    StartCoroutine("Termina");
-                }
-
             }
+
         }
 
-    }
 
 
 
-  
-    IEnumerator PerdeVida()
-    {
-
-        Vida--;
-
-        yield return new WaitForSecondsRealtime(0.2f);
-       
-        if (Vida == 2)
+        IEnumerator PerdeVida()
         {
-            CanvasMascara.GetComponent<LifeGauge>().duasvidas();
-            CanvasParaquedas.GetComponent<LifeGauge>().duasvidas();
+
+            Vida--;
+
+            yield return new WaitForSecondsRealtime(0.2f);
+
+            if (Vida == 2)
+            {
+                CanvasMascara.GetComponent<LifeGauge>().duasvidas();
+                CanvasParaquedas.GetComponent<LifeGauge>().duasvidas();
+            }
+
+            if (Vida == 1)
+            {
+                CanvasMascara.GetComponent<LifeGauge>().umavida();
+                CanvasParaquedas.GetComponent<LifeGauge>().umavida();
+            }
+
+            if (Vida == 0)
+            {
+                CanvasParaquedas.SetActive(false);
+                CanvasMascara.SetActive(false);
+            }
+
+            check = false;
+
         }
 
-        if (Vida == 1)
+        IEnumerator Termina()
         {
-            CanvasMascara.GetComponent<LifeGauge>().umavida();
-            CanvasParaquedas.GetComponent<LifeGauge>().umavida();
-        }
-        if(Vida == 0)
-        {
-            CanvasParaquedas.SetActive(false);
+            perdeparaqueda = false;
+            valendo = false;
+            pontoinicial = pontos;
+            paraquedas.SetActive(false);
+            mascara.SetActive(false);
             CanvasMascara.SetActive(false);
-        }
+            _mascara = false;
 
-        check = false;
-
-    }
-
-    IEnumerator Termina()
-    {
-        perdeparaqueda = false;
-        valendo = false;
-        pontoinicial = pontos;
-        paraquedas.SetActive(false);
-        mascara.SetActive(false);
-        CanvasMascara.SetActive(false);
-        _mascara = false;
-        
-        GetComponent<Rigidbody2D>().freezeRotation = false;
-        GetComponent<Rigidbody2D>().gravityScale = gravidadenormal;
-        GetComponent<Rigidbody2D>().mass = pesonormal;
-        yield return new WaitForSecondsRealtime(0.2f);
-        Vida = 3;
+            GetComponent<Rigidbody2D>().freezeRotation = false;
+            GetComponent<Rigidbody2D>().gravityScale = gravidadenormal;
+            GetComponent<Rigidbody2D>().mass = pesonormal;
+            yield return new WaitForSecondsRealtime(0.2f);
+            Vida = 3;
 
             CanvasMascara.GetComponent<LifeGauge>().tresvidas();
             CanvasParaquedas.GetComponent<LifeGauge>().tresvidas();
-        
+
+
+        }
+
+
+        IEnumerator TerminaParaquedas()
+        {
+            perdeparaqueda = false;
+            valendo = false;
+            pontoinicial = pontos;
+            paraquedas.SetActive(false);
+            GetComponent<Rigidbody2D>().freezeRotation = false;
+            GetComponent<Rigidbody2D>().gravityScale = gravidadenormal;
+            GetComponent<Rigidbody2D>().mass = pesonormal;
+            yield return new WaitForSecondsRealtime(0.2f);
+            Vida = 3;
+            CanvasParaquedas.GetComponent<LifeGauge>().tresvidas();
+
+
+        }
 
     }
-
-
-    IEnumerator TerminaParaquedas()
-    {
-        perdeparaqueda = false;
-        valendo = false;
-        pontoinicial = pontos;
-        paraquedas.SetActive(false);
-        GetComponent<Rigidbody2D>().freezeRotation = false;
-        GetComponent<Rigidbody2D>().gravityScale = gravidadenormal;
-        GetComponent<Rigidbody2D>().mass = pesonormal;
-        yield return new WaitForSecondsRealtime(0.2f);
-        Vida = 3;
-        CanvasParaquedas.GetComponent<LifeGauge>().tresvidas();
-
-
-    }
-
 }

@@ -50,6 +50,8 @@ public class DrawManager : MonoBehaviour
 
     void Update()
     {
+        if(!_mainCamera)
+            _mainCamera = Camera.main;
         if (!_running) return;
 
         _limitReached = currentTotalLines == maxSimultaneousLines;

@@ -14,11 +14,14 @@ public class Floater : SpawnableObject
     [SerializeField] private Animator animator;
     [SerializeField] ParticleNotifier endingParticle;
     [SerializeField] private ParticleSystem startingParticle;
+    
+   
     protected override void OnEnable()
     {
         base.OnEnable();
         startingParticle.Play();
         animator.SetTrigger(ShowUp);
+        movableSoundEmitter.PlayAudio(movableSoundEmitter.AppearAudioClips);
     }
 protected internal override void Victory()
  {
@@ -27,6 +30,7 @@ protected internal override void Victory()
      {
          endingParticle.OnStopped += ReturnToPool;
          endingParticle.ParticleSystem.Play();
+         movableSoundEmitter.PlayAudio(movableSoundEmitter.EndAudioClips);
      }
      
 
@@ -40,7 +44,12 @@ protected internal override void Victory()
      if (other.gameObject.TryGetComponent(out PlayerSettings playerSettings))
      {
  
-         other.gameObject.GetComponent<Rigidbody2D>().AddForce (transform.forward*0.5f, ForceMode2D.Impulse);
+         playerSettings.Rigidbody2D.AddForce (transform.forward*0.5f, ForceMode2D.Impulse);
+     }
+
+     if (other.gameObject.TryGetComponent(out SpawnableObject spawnableObject))
+     {
+         spawnableObject.Rigidbody2D.AddForce (transform.forward*0.5f, ForceMode2D.Impulse);
      }
      
  }
@@ -48,6 +57,7 @@ protected internal override void Victory()
  private void Hit()
  {
      animator.SetTrigger(Hit1);
+     movableSoundEmitter.PlayAudio(movableSoundEmitter.HitAudioClips);
  }
 
  protected override void Timeout()

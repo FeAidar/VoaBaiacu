@@ -17,13 +17,13 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Bola
+  - Player
   - Water
   - UI
   - Animacao
-  - 
-  - 
-  - 
+  - NonDetectable
+  - Hazards
+  - Walls
   - 
   - 
   - 
