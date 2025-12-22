@@ -16,7 +16,7 @@ public class Bomb : SpawnableObject
        base.OnEnable();
        MainRenderer.enabled = true;
        rb2D.constraints = RigidbodyConstraints2D.None;
-        animator.speed = 1 / activeDuration;
+        animator.speed = 1 / ActiveDuration;
     }
     
     private void OnCollisionEnter2D(Collision2D other)

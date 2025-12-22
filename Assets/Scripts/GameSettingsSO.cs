@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 [CreateAssetMenu(fileName = "GameSettings", menuName = "ScriptableObjects/Game Settings", order = 1)]
 public class GameSettingsSO : ScriptableObject
 {
@@ -10,9 +9,21 @@ public class GameSettingsSO : ScriptableObject
     public SpawningTypes[] spawningTypes;
     [Header("Water Config")]
     public PoisonousWater[] poisonousWaters;
-    [Header("Water VFX Pools")]
+    public WaterLayer[]  waterLayers;
     public WaterEffectsPoolEntry[] waterVfxPools;
+    [Header("PowerUps Config")]
+    public WaterLayer test;
+
 }
+
+[System.Serializable]
+public struct WaterLayer
+{
+    public Color[] colorLayer;
+    public WaterType type;
+    public float effectDuration;
+}
+
 [System.Serializable]
 public struct SpawningTypes
 {
@@ -49,6 +60,7 @@ public struct DayPeriod
 public struct Hazards
 {
     public HazardsSO hazard;
+    [Range(0, 60)] public float gameStartDelay;
     [Range(0, 60)]public float minSpawningRate;
     [Range(0, 60)]public float maxSpawningRate;
 }

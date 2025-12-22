@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Pool;
 using Random = UnityEngine.Random;
@@ -15,6 +16,7 @@ public class Spawner : MonoBehaviour
     [SerializeField]private int _poolCapacity = 10;
     protected float _minWaitTime;
     protected float _maxWaitTime;
+    protected float _delayStartTime;
     protected Vector3 _topRight;
     protected Vector3 _bottomLeft;
     protected Coroutine _spawnRoutine;
@@ -23,7 +25,7 @@ public class Spawner : MonoBehaviour
     {
         GameManager.OnParseSettings += GetSettings;
         GameManager.OnChangePeriod += GetPeriod;
-        GameManager.OnStartGame += SpawnAll;
+        GameManager.OnStartGame += SpawnObject;
         GameManager.OnEndGame += StopSpawn;
         ScreenBounds.OnChange += UpdateScreenBounds;
         if (_topRight == Vector3.zero && _bottomLeft == Vector3.zero)
@@ -36,12 +38,13 @@ public class Spawner : MonoBehaviour
             }
         }
     }
+   
     
     private void OnDestroy()
     {
         GameManager.OnParseSettings -= GetSettings;
         GameManager.OnChangePeriod -= GetPeriod;
-        GameManager.OnStartGame -= SpawnAll;
+        GameManager.OnStartGame -= SpawnObject;
         GameManager.OnEndGame -= StopSpawn;
         ScreenBounds.OnChange -= UpdateScreenBounds;
   
@@ -67,13 +70,19 @@ public class Spawner : MonoBehaviour
     private void GetSettings(GameSettingsSO settings)
     {
         _settings = settings;
-       
+        SpawnAll();
 
 
     }
 
     private void GetPeriod(TimePeriod period)
     {
+        bool alreadyStarted = false;
+        if (_spawnRoutine != null)
+        {
+            StopCoroutine(_spawnRoutine);
+            alreadyStarted = true;
+        }
         _timePeriod = period;
         foreach (var dayPeriod in _settings.dayPeriods)
         {
@@ -85,10 +94,16 @@ public class Spawner : MonoBehaviour
                     {
                         _minWaitTime = hazards.minSpawningRate;
                         _maxWaitTime = hazards.maxSpawningRate;
+                        _delayStartTime = hazards.gameStartDelay;
+                        if (alreadyStarted)
+                        {
+                            SpawnObject();
+                        }
                     }
                 }
             }
         }
+      
     }
     
     void SpawnAll()
@@ -100,7 +115,11 @@ public class Spawner : MonoBehaviour
 
     protected virtual void  SpawnObject()
     {
-        _spawnRoutine = StartCoroutine(SpawnLoop());
+      DOVirtual.DelayedCall(_delayStartTime, () =>
+      {
+          Debug.Log("SpawnObject");
+          _spawnRoutine = StartCoroutine(SpawnLoop());
+      });
        
     }
     protected virtual IEnumerator SpawnLoop()
@@ -177,12 +196,12 @@ public class Spawner : MonoBehaviour
             _pool.Release(pooledObject);
         }
        
-        SpawnObject();
+
         yield return  null;
     }
 
     #endregion
-
+   
 
 }
 

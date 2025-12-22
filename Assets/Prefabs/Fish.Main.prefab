@@ -2410,7 +2410,7 @@ GameObject:
   - component: {fileID: 760419886}
   - component: {fileID: 760419914}
   m_Layer: 3
-  m_Name: Fish
+  m_Name: Fish.Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2446,9 +2446,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.5
+  m_Mass: 0.3
   m_LinearDrag: 0
-  m_AngularDrag: 3
+  m_AngularDrag: 0
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: c870470a6f6eeb04ba5dad11169dd35b, type: 2}
   m_Interpolate: 2
@@ -2505,7 +2505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouth: {fileID: 6615080714986033433}
   eyes: {fileID: 1057003032244972400}
-  soundEmitter: {fileID: 760419914}
+  movableSoundEmitter: {fileID: 760419914}
 --- !u!114 &8916212662518659813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2648,7 +2648,7 @@ MonoBehaviour:
   rb2D: {fileID: 8916212662518659832}
   animator: {fileID: 8916212662518659812}
   scoreGiver: {fileID: 5331437668962987682}
-  soundEmitter: {fileID: 760419914}
+  movableSoundEmitter: {fileID: 760419914}
 --- !u!114 &760419914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2661,6 +2661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0002d311e9efca049aa8163ab7464f6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 5356779826784632296}
   appearAudioClips:
   - {fileID: 8300000, guid: 1b15ab2286cb25d4da2ef798c48202a3, type: 3}
   hitAudioClips:
@@ -2673,7 +2674,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: be43ba214334139478697a971479a92d, type: 3}
   waterAudioClips:
   - {fileID: 8300000, guid: be43ba214334139478697a971479a92d, type: 3}
-  audioSource: {fileID: 5356779826784632296}
 --- !u!1001 &3286111765781723750
 PrefabInstance:
   m_ObjectHideFlags: 0

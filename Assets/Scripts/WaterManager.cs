@@ -8,8 +8,8 @@ using UnityEngine.Serialization;
 
 public class WaterManager : MonoBehaviour
 {
-    delegate void ChangeToxicity(WaterType type);
-    static event ChangeToxicity OnChangeToxicity;
+    public delegate void ChangeToxicity(WaterType type);
+    public static event ChangeToxicity OnChangeToxicity;
     
     [Header("Splash Settings")]
     [SerializeField] private float particleHeightOffset = 0.05f;
@@ -21,12 +21,13 @@ public class WaterManager : MonoBehaviour
     [Header("Hazard Reaction Settings")]
     [SerializeField]
     private float activationDelay;
-    
-    
-    private WaterType _currentWaterType;
+
+   private WaterType _currentWaterType;
     private float _timer;
     private Dictionary<WaterType, ParticlePool> pools =
         new Dictionary<WaterType, ParticlePool>();
+
+    private bool _returning;
    
     private GameSettingsSO _settings;
     [SerializeField] private Collider2D col2D;
@@ -112,21 +113,29 @@ public class WaterManager : MonoBehaviour
                     if (entry.hazard== spawnable.HazardType)
                     {
                         soundEmitter.PlayAudio(soundEmitter.DangerWaterAudioClips);
-                        ChangeWaterType(entry.waterType, entry.duration);
+                        DOVirtual.DelayedCall(activationDelay, () =>
+                        {
+                            ChangeWaterType(entry.waterType, entry.duration);
+                           
+                        });
                         spawnable.CauseDamage();
                     }
                 }
             }
             if (other.gameObject.TryGetComponent(out PlayerSettings playerSettings))
             {
-                playerSettings.Rigidbody2D.AddForce (transform.up*0.5f, ForceMode2D.Impulse);
+                ContactPoint2D contact = other.GetContact(0);
+                Vector2 dir = contact.normal;
+                playerSettings.Rigidbody2D.AddForce(Vector2.up * .5f, ForceMode2D.Impulse);
                 soundEmitter.PlayAudio(soundEmitter.PlayerWaterAudioClips);
             }
 
             if (other.gameObject.TryGetComponent(out SpawnableObject spawnableObject))
             {
                 soundEmitter.PlayAudio(soundEmitter.OtherWaterAudioClips);
-                spawnableObject.Rigidbody2D.AddForce (transform.up*0.5f, ForceMode2D.Impulse);
+                ContactPoint2D contact = other.GetContact(0);
+                Vector2 dir = contact.normal;
+                spawnableObject.Rigidbody2D.AddForce(Vector2.up* 0.5f, ForceMode2D.Impulse);
             }
         }
         private Vector3 GetParticleSpawnPosition(Collision2D other)
@@ -144,20 +153,36 @@ public class WaterManager : MonoBehaviour
         {
             _timer = duration;
             _currentWaterType = type;
-            DOVirtual.DelayedCall(activationDelay, () => OnChangeToxicity?.Invoke(type));
+            OnChangeToxicity?.Invoke(type);
+            _returning = false;
 
         }
 
         private void Update()
         {
             if (_currentWaterType == WaterType.Water) return;
+            if (_returning) return;
             if (_timer > 0)
             {
                 _timer -= Time.deltaTime;
             }
             else
             {
-                ChangeWaterType(WaterType.Water, 1);
+                _returning = true;
+                foreach (var layer in _settings.waterLayers)
+                {
+                    if (layer.type == WaterType.Water)
+                    {
+                        OnChangeToxicity?.Invoke(WaterType.Water);
+                        DOVirtual.DelayedCall(layer.effectDuration, () =>
+                        {
+                            ChangeWaterType(WaterType.Water, 1);
+                            
+                        });
+                    }
+                }
+                
+               
             }
 
         }

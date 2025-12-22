@@ -10,7 +10,7 @@ public class SpawnableObject : MonoBehaviour
         protected HazardsSO hazardType;
         public HazardsSO HazardType => hazardType;
         [SerializeField] private Renderer mainRenderer;
-        [SerializeField] protected float activeDuration;
+        protected float ActiveDuration;
         [SerializeField] protected Collider2D[] col2D;
         [SerializeField] protected Rigidbody2D rb2D;
         public Rigidbody2D Rigidbody2D => rb2D;
@@ -29,7 +29,8 @@ public class SpawnableObject : MonoBehaviour
         protected virtual void OnEnable()
         {
             _timedOut = false;
-            _timeRemaining = activeDuration;
+            ActiveDuration = hazardType ? hazardType.hazardDuration : 7f;
+            _timeRemaining = ActiveDuration;
             ChangeCollidersState(true);
            
         }

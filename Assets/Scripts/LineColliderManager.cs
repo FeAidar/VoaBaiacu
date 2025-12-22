@@ -17,7 +17,11 @@ public class LineColliderManager : MonoBehaviour
         if(collision.gameObject.TryGetComponent(out PlayerSettings playerSettings))
         { 
             RemoveLine();
-          playerSettings.Rigidbody2D.AddForce (transform.up*1.2f, ForceMode2D.Impulse);
+            ContactPoint2D contact = collision.GetContact(0);
+            Vector2 dir = -contact.normal;
+            Vector2 finalDir = (dir + Vector2.up).normalized;
+            playerSettings.Rigidbody2D.AddForce(finalDir * 0.7f, ForceMode2D.Impulse);
+        
 
             
            
@@ -26,7 +30,10 @@ public class LineColliderManager : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out SpawnableObject spawnableObject))
         {
             RemoveLine();
-            spawnableObject.Rigidbody2D.AddForce(transform.up * 1.1f, ForceMode2D.Impulse);
+            ContactPoint2D contact = collision.GetContact(0);
+            Vector2 dir = -contact.normal;
+            Vector2 finalDir = (dir + Vector2.up).normalized;
+            spawnableObject.Rigidbody2D.AddForce(finalDir* 0.7f, ForceMode2D.Impulse);
 
 
 

@@ -43,13 +43,19 @@ protected internal override void Victory()
      Hit();
      if (other.gameObject.TryGetComponent(out PlayerSettings playerSettings))
      {
- 
-         playerSettings.Rigidbody2D.AddForce (transform.forward*0.5f, ForceMode2D.Impulse);
+         ContactPoint2D contact = other.GetContact(0);
+         Vector2 dir = -contact.normal;
+         Vector2 finalDir = (dir + Vector2.up).normalized;
+         playerSettings.Rigidbody2D.AddForce(finalDir * 0.25f, ForceMode2D.Impulse);
+         
      }
 
      if (other.gameObject.TryGetComponent(out SpawnableObject spawnableObject))
      {
-         spawnableObject.Rigidbody2D.AddForce (transform.forward*0.5f, ForceMode2D.Impulse);
+         ContactPoint2D contact = other.GetContact(0);
+         Vector2 dir = -contact.normal;
+         Vector2 finalDir = (dir + Vector2.up).normalized;
+         spawnableObject.Rigidbody2D.AddForce(finalDir * 0.25f, ForceMode2D.Impulse);
      }
      
  }

@@ -8,8 +8,9 @@
      
             public GameObject hazard;
             public spawnBounds placeToSpawn;
-            
-    
+            [Range(0, 30)] public float hazardDuration;
+
+
     }
     [System.Serializable]
     public enum spawnBounds {InsideBounds, OutsideBounds}

@@ -14,30 +14,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dayPeriods:
   - period: 0
-    duration: 20
+    duration: 180
     hazards:
     - hazard: {fileID: 11400000, guid: efd8f963fbb0fd14cbadf4c695352290, type: 2}
-      minSpawningRate: 8
-      maxSpawningRate: 9
+      gameStartDelay: 15
+      minSpawningRate: 10
+      maxSpawningRate: 15
     - hazard: {fileID: 11400000, guid: ffbeee831959f1a4b825876f965af2af, type: 2}
-      minSpawningRate: 5
-      maxSpawningRate: 5
-  - period: 1
-    duration: 20
-    hazards:
-    - hazard: {fileID: 11400000, guid: efd8f963fbb0fd14cbadf4c695352290, type: 2}
-      minSpawningRate: 3.5
-      maxSpawningRate: 6
-    - hazard: {fileID: 11400000, guid: ffbeee831959f1a4b825876f965af2af, type: 2}
+      gameStartDelay: 3
       minSpawningRate: 6
       maxSpawningRate: 7
-  - period: 2
-    duration: 20
+  - period: 1
+    duration: 180
     hazards:
     - hazard: {fileID: 11400000, guid: efd8f963fbb0fd14cbadf4c695352290, type: 2}
+      gameStartDelay: 10
+      minSpawningRate: 4
+      maxSpawningRate: 6
+    - hazard: {fileID: 11400000, guid: ffbeee831959f1a4b825876f965af2af, type: 2}
+      gameStartDelay: 10
+      minSpawningRate: 10
+      maxSpawningRate: 15
+  - period: 2
+    duration: 180
+    hazards:
+    - hazard: {fileID: 11400000, guid: efd8f963fbb0fd14cbadf4c695352290, type: 2}
+      gameStartDelay: 5
       minSpawningRate: 8
       maxSpawningRate: 12
     - hazard: {fileID: 11400000, guid: ffbeee831959f1a4b825876f965af2af, type: 2}
+      gameStartDelay: 2
       minSpawningRate: 3
       maxSpawningRate: 5
   spawningTypes:
@@ -48,10 +54,38 @@ MonoBehaviour:
   poisonousWaters:
   - hazard: {fileID: 11400000, guid: efd8f963fbb0fd14cbadf4c695352290, type: 2}
     waterType: 1
-    duration: 15
+    duration: 8
   - hazard: {fileID: 11400000, guid: 566584346219768469ad343711246cd1, type: 2}
     waterType: 2
-    duration: 15
+    duration: 8
+  waterLayers:
+  - colorLayer:
+    - {r: 0.06666667, g: 0.34117648, b: 0.6117647, a: 1}
+    - {r: 0.39215687, g: 0.6901961, b: 1, a: 1}
+    - {r: 0, g: 0.49803922, b: 1, a: 1}
+    - {r: 0.4862745, g: 0.7411765, b: 1, a: 1}
+    - {r: 0, g: 0.28235295, b: 0.5647059, a: 1}
+    - {r: 0, g: 0.34117648, b: 0.6901961, a: 1}
+    type: 0
+    effectDuration: 3
+  - colorLayer:
+    - {r: 0, g: 0.34117648, b: 0, a: 1}
+    - {r: 0.39215687, g: 0.6901961, b: 0, a: 1}
+    - {r: 0, g: 0.49803922, b: 0, a: 1}
+    - {r: 0.4862745, g: 0.7411765, b: 0, a: 1}
+    - {r: 0, g: 0.28235295, b: 0, a: 1}
+    - {r: 0, g: 0.34117648, b: 0, a: 1}
+    type: 1
+    effectDuration: 3
+  - colorLayer:
+    - {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 1}
+    - {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
+    - {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
+    - {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 1}
+    - {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 1}
+    - {r: 0.03773582, g: 0.03773582, b: 0.03773582, a: 1}
+    type: 2
+    effectDuration: 3
   waterVfxPools:
   - type: 0
     pool: {fileID: 8534090112935694284, guid: 478465d07ced3f241a60fca58ed97999, type: 3}
