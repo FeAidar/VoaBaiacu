@@ -31,6 +31,8 @@ public class WaterManager : MonoBehaviour
    
     private GameSettingsSO _settings;
     [SerializeField] private Collider2D col2D;
+
+    private Tween _waterReturn;
     private void OnDrawGizmos()
     {
         if (col2D == null)
@@ -113,7 +115,8 @@ public class WaterManager : MonoBehaviour
                     if (entry.waterType== spawnable.HazardType.effectType)
                     {
                         soundEmitter.PlayAudio(soundEmitter.DangerWaterAudioClips);
-                        DOVirtual.DelayedCall(activationDelay, () =>
+                        _waterReturn?.Kill();
+                        _waterReturn = DOVirtual.DelayedCall(activationDelay, () =>
                         {
                             ChangeWaterType(entry.waterType, entry.duration);
                            
@@ -174,7 +177,8 @@ public class WaterManager : MonoBehaviour
                     if (layer.type == WaterType.Normal)
                     {
                         OnChangeToxicity?.Invoke(WaterType.Normal);
-                        DOVirtual.DelayedCall(layer.effectDuration, () =>
+                        _waterReturn?.Kill();
+                        _waterReturn =  DOVirtual.DelayedCall(layer.effectDuration, () =>
                         {
                             ChangeWaterType(WaterType.Normal, 1);
                             

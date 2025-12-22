@@ -18,10 +18,12 @@ public class Floater : SpawnableObject
    
     protected override void OnEnable()
     {
-        base.OnEnable();
+base.OnEnable();
+        ChangeCollidersState(false);
         startingParticle.Play();
         animator.SetTrigger(ShowUp);
         movableSoundEmitter.PlayAudio(movableSoundEmitter.AppearAudioClips);
+        DOVirtual.DelayedCall(0.3f, () => ChangeCollidersState(true));
     }
 protected internal override void Victory()
  {
@@ -68,8 +70,9 @@ protected internal override void Victory()
 
  protected override void Timeout()
  {
-    ChangeCollidersState(false);
+    
     animator.SetTrigger(Hide);
+    DOVirtual.DelayedCall(0.3f, () => ChangeCollidersState(false));
     DOVirtual.DelayedCall(0.5f, () => ReturnToPool());
  }
  

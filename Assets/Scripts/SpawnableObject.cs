@@ -15,7 +15,7 @@ public class SpawnableObject : MonoBehaviour
         [SerializeField] protected Rigidbody2D rb2D;
         public Rigidbody2D Rigidbody2D => rb2D;
         [FormerlySerializedAs("soundEmitter")] [SerializeField] protected MovableSoundEmitter movableSoundEmitter;
-        private bool _timedOut = false;
+        protected bool _timedOut = false;
        
 
  
@@ -23,7 +23,7 @@ public class SpawnableObject : MonoBehaviour
         public Renderer MainRenderer => mainRenderer;
         
         
-        private float _timeRemaining;
+       protected float _timeRemaining;
         
         
         protected virtual void OnEnable()
