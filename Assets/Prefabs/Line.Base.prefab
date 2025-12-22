@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7585285823825574628}
   - component: {fileID: 2722091238491358955}
   - component: {fileID: 3415629743087141380}
+  - component: {fileID: 3205790243598321438}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Linha
@@ -68,6 +69,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   line: {fileID: 6962790280664484235}
+--- !u!114 &3205790243598321438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3088262300214225462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 054a1c64d92af6742a426bd18bfa7d6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3540975532335003397
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,7 +94,7 @@ GameObject:
   - component: {fileID: 6962790280664484235}
   - component: {fileID: -4013914906566657948}
   m_Layer: 0
-  m_Name: Line
+  m_Name: Line.Base
   m_TagString: Linha
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

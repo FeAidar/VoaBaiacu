@@ -8,6 +8,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
     public delegate void ParseSettings(GameSettingsSO settings);
     public static event ParseSettings OnParseSettings;
     public delegate void StartGame();
@@ -35,6 +36,14 @@ public class GameManager : MonoBehaviour
     public GameObject DebugCamera;
     private void Awake()
     {
+        if (Instance != null)
+        {
+                Destroy(gameObject);
+                return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+        
         if (!Camera.main)
         {
            DebugCamera.SetActive(true);

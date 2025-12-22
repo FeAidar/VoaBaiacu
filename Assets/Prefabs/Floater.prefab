@@ -4934,6 +4934,7 @@ GameObject:
   - component: {fileID: 321354603035216995}
   - component: {fileID: 3523503519025898732}
   - component: {fileID: 7624169178763235063}
+  - component: {fileID: 9055016485431954848}
   m_Layer: 0
   m_Name: HitPoint
   m_TagString: Untagged
@@ -4996,6 +4997,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   winCollider: {fileID: 3523503519025898732}
   spawnableObject: {fileID: 7517734307322328255}
+--- !u!114 &9055016485431954848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2751916654613047440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 054a1c64d92af6742a426bd18bfa7d6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5053740640365086734
 GameObject:
   m_ObjectHideFlags: 0
@@ -9836,6 +9849,7 @@ GameObject:
   - component: {fileID: 3381336328147946660}
   - component: {fileID: 6194876408896238814}
   - component: {fileID: 1299048473231904094}
+  - component: {fileID: 84211581543415939}
   m_Layer: 0
   m_Name: Floater
   m_TagString: Ring
@@ -9875,13 +9889,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainRenderer: {fileID: 7069855715253617365}
-  activeDuration: 3
   col2D:
   - {fileID: 3523503519025898732}
   - {fileID: 7069855715253617367}
   - {fileID: 2484835020937304696}
   rb2D: {fileID: 3381336328147946660}
-  soundEmitter: {fileID: 6194876408896238814}
+  movableSoundEmitter: {fileID: 6194876408896238814}
   winHitPoint: {fileID: 7624169178763235063}
   animator: {fileID: 6883936116039016682}
   endingParticle: {fileID: 7985535186773295721}
@@ -9939,6 +9952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0002d311e9efca049aa8163ab7464f6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 1299048473231904094}
   appearAudioClips:
   - {fileID: 8300000, guid: b4c845a45ca691f47bdd51a13a508e07, type: 3}
   hitAudioClips:
@@ -9946,7 +9960,6 @@ MonoBehaviour:
   endAudioClips:
   - {fileID: 8300000, guid: e8a8ead8ece29844a8f894ca472cee9a, type: 3}
   waterAudioClips: []
-  audioSource: {fileID: 1299048473231904094}
 --- !u!82 &1299048473231904094
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10043,6 +10056,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &84211581543415939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7069855714398741621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 054a1c64d92af6742a426bd18bfa7d6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7069855715253617371
 GameObject:
   m_ObjectHideFlags: 0

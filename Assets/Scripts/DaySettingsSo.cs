@@ -8,7 +8,7 @@
             public TimePeriod period;
             public float duration;
             public Hazards[] hazards;
-            public PowerUps[] powerUps;
+            public PowerUpSO[] powerUps;
         
 
     }

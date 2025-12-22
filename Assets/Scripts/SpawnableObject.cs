@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
-
+[RequireComponent(typeof(CoolDownController))]
 
 public class SpawnableObject : MonoBehaviour
     {
