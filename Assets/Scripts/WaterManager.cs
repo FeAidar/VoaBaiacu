@@ -62,7 +62,7 @@ public class WaterManager : MonoBehaviour
         _settings = settings;
         CreatePools();
 
-        ChangeWaterType(WaterType.Water, 1f);
+        ChangeWaterType(WaterType.Normal, 1f);
   
     }
     private void CreatePools()
@@ -110,7 +110,7 @@ public class WaterManager : MonoBehaviour
                 
                 foreach (var entry in _settings.poisonousWaters)
                 {
-                    if (entry.hazard== spawnable.HazardType)
+                    if (entry.waterType== spawnable.HazardType.effectType)
                     {
                         soundEmitter.PlayAudio(soundEmitter.DangerWaterAudioClips);
                         DOVirtual.DelayedCall(activationDelay, () =>
@@ -160,7 +160,7 @@ public class WaterManager : MonoBehaviour
 
         private void Update()
         {
-            if (_currentWaterType == WaterType.Water) return;
+            if (_currentWaterType == WaterType.Normal) return;
             if (_returning) return;
             if (_timer > 0)
             {
@@ -171,12 +171,12 @@ public class WaterManager : MonoBehaviour
                 _returning = true;
                 foreach (var layer in _settings.waterLayers)
                 {
-                    if (layer.type == WaterType.Water)
+                    if (layer.type == WaterType.Normal)
                     {
-                        OnChangeToxicity?.Invoke(WaterType.Water);
+                        OnChangeToxicity?.Invoke(WaterType.Normal);
                         DOVirtual.DelayedCall(layer.effectDuration, () =>
                         {
-                            ChangeWaterType(WaterType.Water, 1);
+                            ChangeWaterType(WaterType.Normal, 1);
                             
                         });
                     }

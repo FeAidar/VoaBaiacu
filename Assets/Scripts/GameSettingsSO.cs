@@ -35,14 +35,14 @@ public struct SpawningTypes
 [System.Serializable]
 public struct PoisonousWater
 {
-    public HazardsSO hazard;
+   
     public WaterType waterType;
     public float duration;
 
 }
 
 public enum WaterType
-{ Water, Toxic, Oil,}
+{ Normal, Toxic, Oil,}
 
 [System.Serializable]
 public enum TimePeriod {Morning, Afternoon, Evening}

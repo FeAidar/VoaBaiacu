@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hazard: {fileID: 3164406772484260914, guid: d7ee5b953ecaf9e4c9d74bf1af8658e3, type: 3}
   placeToSpawn: 1
+  effectType: 1
   hazardDuration: 10

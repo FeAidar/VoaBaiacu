@@ -8,6 +8,7 @@
      
             public GameObject hazard;
             public spawnBounds placeToSpawn;
+            public WaterType effectType;
             [Range(0, 30)] public float hazardDuration;
 
 
