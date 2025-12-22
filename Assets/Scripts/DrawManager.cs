@@ -7,6 +7,7 @@ public class DrawManager : MonoBehaviour
     [SerializeField] private int maxSimultaneousLines;
     [SerializeField] private float lineSize;
     [SerializeField] private float lineDuration = 4f;
+    private float _realLineSize;
     public float LineDuration => lineDuration;
 
     public const float Resolution = 0.1f;
@@ -28,6 +29,7 @@ public class DrawManager : MonoBehaviour
 
         GameManager.OnStartGame += StartLineManager;
         GameManager.OnEndGame += EndLineManager;
+        ScreenBounds.OnChange += RecalculateSize;
 
         // Pré-instancia o pool
         for (int i = 0; i < maxSimultaneousLines; i++)
@@ -39,10 +41,18 @@ public class DrawManager : MonoBehaviour
         }
     }
 
+    private void RecalculateSize(Vector3 n, Vector3 n2)
+    {
+        float baseAspect = 1284f / 2778f;
+        float currentAspect = Screen.width / (float)Screen.height;
+        _realLineSize = lineSize * (currentAspect / baseAspect);
+    }
+
     private void OnDestroy()
     {
         GameManager.OnStartGame -= StartLineManager;
         GameManager.OnEndGame -= EndLineManager;
+        ScreenBounds.OnChange -= RecalculateSize;
     }
 
     void StartLineManager() => _running = true;
@@ -68,7 +78,7 @@ public class DrawManager : MonoBehaviour
             if (_limitReached)
                 _checkFingerUp = true;
 
-            if (_currentLine && _currentLine.Distance < lineSize)
+            if (_currentLine && _currentLine.Distance < _realLineSize)
                 _currentLine.SetPosition(mousePos);
         }
 
