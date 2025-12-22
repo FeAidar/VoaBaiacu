@@ -12,15 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38ed30d9cc824334ab3032a1b6329615, type: 3}
   m_Name: GameRules
   m_EditorClassIdentifier: 
+  lifeSettings:
+    playerLife: 3
+    lifeLossByTouchingWater:
+    - type: 1
+      lifeDamage: -1
+    - type: 2
+      lifeDamage: -1
   daySettings:
   - {fileID: 11400000, guid: 4ccd36b891412da46a453d8cba507918, type: 2}
   - {fileID: 11400000, guid: 407962298a02182498c9c93131f344ff, type: 2}
   - {fileID: 11400000, guid: c171e72b832a2e24183b445f28415af8, type: 2}
-  spawningTypes:
-  - bounds: 0
-    spawnerType: {fileID: 3908078916181400104, guid: 07661385c259b6a4fabfede3f6a5f725, type: 3}
-  - bounds: 1
-    spawnerType: {fileID: 6875427667375383771, guid: bb655fde624a59b48beade7959224da5, type: 3}
   poisonousWaters:
   - waterType: 1
     duration: 8
@@ -61,7 +63,40 @@ MonoBehaviour:
     pool: {fileID: 7587396630829148496, guid: bbbd1e542e13b7e44a874763714ca696, type: 3}
   - type: 2
     pool: {fileID: 3006394712120243223, guid: 8235dd8650d54a647affb7e4e5c4ab93, type: 3}
-  test:
-    colorLayer: []
-    type: 0
-    effectDuration: 0
+  scoreSystem:
+    onPlayerTouchingLines:
+      score: 50
+    onPlayerTouchingWater:
+    - score:
+        score: -50
+      waterType: 0
+    - score:
+        score: -100
+      waterType: 1
+    - score:
+        score: -100
+      waterType: 2
+    onHazardsTimingOut:
+    - score:
+        score: 250
+      hazard: {fileID: 11400000, guid: efd8f963fbb0fd14cbadf4c695352290, type: 2}
+    - score:
+        score: 150
+      hazard: {fileID: 11400000, guid: 566584346219768469ad343711246cd1, type: 2}
+    onHazardsTouchingWater:
+    - score:
+        score: -200
+      hazard: {fileID: 11400000, guid: efd8f963fbb0fd14cbadf4c695352290, type: 2}
+    - score:
+        score: -200
+      hazard: {fileID: 11400000, guid: 566584346219768469ad343711246cd1, type: 2}
+    powerUpScoreNeeded:
+    - appearEveryEarnedPoints: 1200
+      powerUps:
+      - {fileID: 11400000, guid: 5786f63391a1137448e6250fc5e2a147, type: 2}
+      - {fileID: 11400000, guid: 5803cff1573b2cf4cba617cc45886d09, type: 2}
+  spawningTypes:
+  - bounds: 0
+    spawnerType: {fileID: 3908078916181400104, guid: 07661385c259b6a4fabfede3f6a5f725, type: 3}
+  - bounds: 1
+    spawnerType: {fileID: 6875427667375383771, guid: bb655fde624a59b48beade7959224da5, type: 3}

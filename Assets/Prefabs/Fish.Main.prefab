@@ -2318,9 +2318,7 @@ GameObject:
   - component: {fileID: 8916212662518659838}
   - component: {fileID: 8916212662518659832}
   - component: {fileID: 5331437668962987685}
-  - component: {fileID: 5331437668962987682}
   - component: {fileID: 8916212662518659812}
-  - component: {fileID: 8916212662518659813}
   - component: {fileID: 5356779826784632296}
   - component: {fileID: 760419900}
   - component: {fileID: 760419886}
@@ -2387,26 +2385,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.12390335, y: 0.013015469}
   m_Size: {x: 6.251916, y: 6.277947}
   m_Direction: 0
---- !u!114 &5331437668962987682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8916212662518659835}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2373dbb9804d5d44db493965b514931d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PontosLinha: 10
-  PontosArco: 250
-  PontosAgua: -10
-  PontosBomba: 200
-  score: {fileID: 0}
-  highscore: {fileID: 0}
-  pontos: 0
-  scoreValue: 0
 --- !u!114 &8916212662518659812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2422,26 +2400,6 @@ MonoBehaviour:
   mouth: {fileID: 6615080714986033433}
   eyes: {fileID: 1057003032244972400}
   movableSoundEmitter: {fileID: 760419914}
---- !u!114 &8916212662518659813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8916212662518659835}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ba6f3fbd81f46f43b91b0ca39abf6a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  paraquedas: {fileID: 8983578395462237865}
-  mascara: {fileID: 3286111765785305121}
-  praganhar: 1000
-  GravidadeParaquedas: 0.2
-  Vida: 3
-  CanvasMascara: {fileID: 0}
-  CanvasParaquedas: {fileID: 0}
-  PowerUP: {fileID: 0}
 --- !u!82 &5356779826784632296
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2563,7 +2521,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb2D: {fileID: 8916212662518659832}
   animator: {fileID: 8916212662518659812}
-  scoreGiver: {fileID: 5331437668962987682}
   movableSoundEmitter: {fileID: 760419914}
 --- !u!114 &760419914
 MonoBehaviour:
@@ -2647,11 +2604,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a8abf58f90d10b449440ccd67e92a09, type: 3}
---- !u!1 &3286111765785305121 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3429320465483792994, guid: 4a8abf58f90d10b449440ccd67e92a09, type: 3}
-  m_PrefabInstance: {fileID: 148049201186398787}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3286111765785305122 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3429320465483792993, guid: 4a8abf58f90d10b449440ccd67e92a09, type: 3}

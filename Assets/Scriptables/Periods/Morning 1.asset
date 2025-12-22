@@ -23,3 +23,6 @@ MonoBehaviour:
     gameStartDelay: 3
     minSpawningRate: 6
     maxSpawningRate: 7
+  powerUps:
+  - {fileID: 11400000, guid: 5786f63391a1137448e6250fc5e2a147, type: 2}
+  - {fileID: 11400000, guid: 5803cff1573b2cf4cba617cc45886d09, type: 2}

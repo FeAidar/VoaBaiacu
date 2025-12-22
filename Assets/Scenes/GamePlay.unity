@@ -2223,10 +2223,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8916212662518659813, guid: 335e0d7c67b9b844194b5d1f7dae0538, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8916212662518659835, guid: 335e0d7c67b9b844194b5d1f7dae0538, type: 3}
       propertyPath: m_Name
       value: Fish.Main

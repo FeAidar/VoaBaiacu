@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48b3db392bbf41fb9e7238fe8b421e04, type: 3}
   m_Name: Mask
   m_EditorClassIdentifier: 
-  prefab: {fileID: 5852016265060730063, guid: 3cacffa13b7262f49acf47b2ef2b08a6, type: 3}
+  prefab: {fileID: 3429320465483792994, guid: 4a8abf58f90d10b449440ccd67e92a09, type: 3}
   placeToSpawn: 2
-  defendsAgainstTypes: 
+  defendsAgainstTypes: 01000000
   powerUpDuration: 0
   amountOfUses: 3
