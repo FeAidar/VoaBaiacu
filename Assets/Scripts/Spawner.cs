@@ -84,7 +84,7 @@ public class Spawner : MonoBehaviour
             alreadyStarted = true;
         }
         _timePeriod = period;
-        foreach (var dayPeriod in _settings.dayPeriods)
+        foreach (var dayPeriod in _settings.daySettings)
         {
             if (dayPeriod.period == period)
             {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 
-public class PowerUps : MonoBehaviour
+public class PowerUp : MonoBehaviour
 {
     public GameObject paraquedas;
     public GameObject mascara;

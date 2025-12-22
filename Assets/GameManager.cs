@@ -52,9 +52,9 @@ public class GameManager : MonoBehaviour
 
     private void Setup(int period)
     {
-        currentPeriod = settings.dayPeriods[period].period;
+        currentPeriod = settings.daySettings[period].period;
        currentPeriodTime = 0f;
-        _maxPeriodTime = settings.dayPeriods[period].duration;
+        _maxPeriodTime = settings.daySettings[period].duration;
 
     }
     private void Update()
@@ -68,11 +68,11 @@ public class GameManager : MonoBehaviour
         if (!_canPlay) return;
         Timer();
         if (currentPeriodTime < _maxPeriodTime) return;
-        for (int i = 0; i < settings.dayPeriods.Length; i++)
+        for (int i = 0; i < settings.daySettings.Length; i++)
         {
-            if (settings.dayPeriods[i].period == currentPeriod)
+            if (settings.daySettings[i].period == currentPeriod)
             {
-                if (i + 1 < settings.dayPeriods.Length)
+                if (i + 1 < settings.daySettings.Length)
                 {
                     Setup(i+1);
                     ChangePeriodOfDay();
@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
 
     private void CreateSpawners()
     {
-        foreach (var day in settings.dayPeriods)
+        foreach (var day in settings.daySettings)
         {
             foreach (Hazards hazard in day.hazards)
             {

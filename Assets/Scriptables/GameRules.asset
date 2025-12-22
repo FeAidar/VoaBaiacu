@@ -12,51 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38ed30d9cc824334ab3032a1b6329615, type: 3}
   m_Name: GameRules
   m_EditorClassIdentifier: 
-  dayPeriods:
-  - period: 0
-    duration: 180
-    hazards:
-    - hazard: {fileID: 11400000, guid: efd8f963fbb0fd14cbadf4c695352290, type: 2}
-      gameStartDelay: 15
-      minSpawningRate: 10
-      maxSpawningRate: 15
-    - hazard: {fileID: 11400000, guid: ffbeee831959f1a4b825876f965af2af, type: 2}
-      gameStartDelay: 3
-      minSpawningRate: 6
-      maxSpawningRate: 7
-  - period: 1
-    duration: 180
-    hazards:
-    - hazard: {fileID: 11400000, guid: efd8f963fbb0fd14cbadf4c695352290, type: 2}
-      gameStartDelay: 10
-      minSpawningRate: 4
-      maxSpawningRate: 6
-    - hazard: {fileID: 11400000, guid: ffbeee831959f1a4b825876f965af2af, type: 2}
-      gameStartDelay: 10
-      minSpawningRate: 10
-      maxSpawningRate: 15
-  - period: 2
-    duration: 180
-    hazards:
-    - hazard: {fileID: 11400000, guid: efd8f963fbb0fd14cbadf4c695352290, type: 2}
-      gameStartDelay: 5
-      minSpawningRate: 8
-      maxSpawningRate: 12
-    - hazard: {fileID: 11400000, guid: ffbeee831959f1a4b825876f965af2af, type: 2}
-      gameStartDelay: 2
-      minSpawningRate: 3
-      maxSpawningRate: 5
+  daySettings:
+  - {fileID: 11400000, guid: 4ccd36b891412da46a453d8cba507918, type: 2}
+  - {fileID: 11400000, guid: 407962298a02182498c9c93131f344ff, type: 2}
+  - {fileID: 11400000, guid: c171e72b832a2e24183b445f28415af8, type: 2}
   spawningTypes:
   - bounds: 0
     spawnerType: {fileID: 3908078916181400104, guid: 07661385c259b6a4fabfede3f6a5f725, type: 3}
   - bounds: 1
     spawnerType: {fileID: 6875427667375383771, guid: bb655fde624a59b48beade7959224da5, type: 3}
   poisonousWaters:
-  - hazard: {fileID: 11400000, guid: efd8f963fbb0fd14cbadf4c695352290, type: 2}
-    waterType: 1
+  - waterType: 1
     duration: 8
-  - hazard: {fileID: 11400000, guid: 566584346219768469ad343711246cd1, type: 2}
-    waterType: 2
+  - waterType: 2
     duration: 8
   waterLayers:
   - colorLayer:
@@ -93,3 +61,7 @@ MonoBehaviour:
     pool: {fileID: 7587396630829148496, guid: bbbd1e542e13b7e44a874763714ca696, type: 3}
   - type: 2
     pool: {fileID: 3006394712120243223, guid: 8235dd8650d54a647affb7e4e5c4ab93, type: 3}
+  test:
+    colorLayer: []
+    type: 0
+    effectDuration: 0

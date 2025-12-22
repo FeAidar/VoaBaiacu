@@ -14,4 +14,4 @@
 
     }
     [System.Serializable]
-    public enum spawnBounds {InsideBounds, OutsideBounds}
+    public enum spawnBounds {InsideBounds, OutsideBounds, InPlayer}

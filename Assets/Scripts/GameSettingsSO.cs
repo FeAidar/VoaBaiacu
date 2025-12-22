@@ -4,14 +4,15 @@ using UnityEngine;
 public class GameSettingsSO : ScriptableObject
 {
     [Header("Day Time Config")]
-    public DayPeriod[]  dayPeriods;
+    [InlineSO]
+    public DaySettingsSo[]  daySettings;
     [Header("Spawning Config")]
     public SpawningTypes[] spawningTypes;
     [Header("Water Config")]
     public PoisonousWater[] poisonousWaters;
     public WaterLayer[]  waterLayers;
     public WaterEffectsPoolEntry[] waterVfxPools;
-    [Header("PowerUps Config")]
+    [Header("Scores Config")]
     public WaterLayer test;
 
 }
@@ -23,6 +24,9 @@ public struct WaterLayer
     public WaterType type;
     public float effectDuration;
 }
+
+
+
 
 [System.Serializable]
 public struct SpawningTypes
@@ -59,7 +63,17 @@ public struct DayPeriod
 [System.Serializable]
 public struct Hazards
 {
+    [InlineSO]
     public HazardsSO hazard;
+    [Range(0, 60)] public float gameStartDelay;
+    [Range(0, 60)]public float minSpawningRate;
+    [Range(0, 60)]public float maxSpawningRate;
+}
+
+[System.Serializable]
+public struct PowerUps
+{
+    public PowerUpSO powerUp;
     [Range(0, 60)] public float gameStartDelay;
     [Range(0, 60)]public float minSpawningRate;
     [Range(0, 60)]public float maxSpawningRate;

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f527eb5064394f3aafb274927e0c4039, type: 3}
+  m_Name: Afternoon 1
+  m_EditorClassIdentifier: 
+  period: 1
+  duration: 180
+  hazards:
+  - hazard: {fileID: 11400000, guid: efd8f963fbb0fd14cbadf4c695352290, type: 2}
+    gameStartDelay: 10
+    minSpawningRate: 4
+    maxSpawningRate: 6
+  - hazard: {fileID: 11400000, guid: ffbeee831959f1a4b825876f965af2af, type: 2}
+    gameStartDelay: 10
+    minSpawningRate: 10
+    maxSpawningRate: 15
