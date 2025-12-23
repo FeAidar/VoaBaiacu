@@ -41,6 +41,7 @@ public class UIDisplay : MonoBehaviour
     {
         gameOverCanvas.enabled = false;
         canvasGroup.alpha = 0;
+        UpdateScore(0);
         canvas.enabled = true;
         canvasGroup.DOFade(1, 0.5f);
 
