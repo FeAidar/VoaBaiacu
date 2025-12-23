@@ -16,6 +16,7 @@ public class GameSettingsSO : ScriptableObject
     public WaterEffectsPoolEntry[] waterVfxPools;
     [Header("Scores Config")] public ScoreSystem scoreSystem;
     
+    
     [Header("Spawning Config")]
     public SpawningTypes[] spawningTypes;
     private void OnValidate()
@@ -82,8 +83,10 @@ public struct ScoreSystem
     [Header("Win/Lose Points")]
     public Score onPlayerTouchingLines;
     public WaterScoreSystem[] onPlayerTouchingWater;
+    public HazardScoreSystem[] onPlayerTouchingHazards;
     public HazardScoreSystem[] onHazardsTimingOut;
     public HazardScoreSystem[] onHazardsTouchingWater;
+   
    [Header("PowerUp Score Needed")]
    public PowerUpScoreSystem[] powerUpScoreNeeded;
     

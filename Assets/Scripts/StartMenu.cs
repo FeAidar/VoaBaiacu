@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Rendering;
@@ -21,6 +22,7 @@ public class StartMenu : MonoBehaviour
     [SerializeField] private float canvasFadeSpeed;
     [SerializeField] private float cutsceneStartDelay;
     [SerializeField] private float timeBeforeStartingGameplay;
+    [SerializeField] private TextMeshProUGUI highScore;
     private Tween _blurTween;
     private Tween _canvasTween;
     private bool _gameStarted = false;
@@ -38,8 +40,10 @@ public class StartMenu : MonoBehaviour
             backgroundBlur.enabled = true;
             backgroundBlur.weight = 1;
         }
-     
-      
+
+        highScore.text = HighScoreManager.CurrentHighScore.ToString();
+
+
     }
 
     public void StartButton()

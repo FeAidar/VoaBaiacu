@@ -7,6 +7,7 @@ namespace DefaultNamespace
     {
         [SerializeField] private Collider2D winCollider;
         [SerializeField] private SpawnableObject spawnableObject;
+        public SpawnableObject SpawnableObject => spawnableObject;
         
         private void OnTriggerEnter2D(Collider2D collision)
         {

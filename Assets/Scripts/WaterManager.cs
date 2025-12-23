@@ -23,11 +23,13 @@ public class WaterManager : MonoBehaviour
     private float activationDelay;
 
    private WaterType _currentWaterType;
+   public WaterType CurrentWaterType => _currentWaterType;
     private float _timer;
     private Dictionary<WaterType, ParticlePool> pools =
         new Dictionary<WaterType, ParticlePool>();
 
     private bool _returning;
+    private bool _gameStarted;
    
     private GameSettingsSO _settings;
     [SerializeField] private Collider2D col2D;
@@ -52,20 +54,34 @@ public class WaterManager : MonoBehaviour
     private void Awake()
     {
         GameManager.OnParseSettings += GetSettings;
+        GameManager.OnStartGame += StartWater;
+        GameManager.OnEndGame += StopWater;
     }
 
     private void OnDestroy()
     {
         GameManager.OnParseSettings -= GetSettings;
+        GameManager.OnStartGame -= StartWater;
+        GameManager.OnEndGame -= StopWater;
     }
 
     private void GetSettings(GameSettingsSO settings)
     {
         _settings = settings;
         CreatePools();
-
-        ChangeWaterType(WaterType.Normal, 1f);
+       
   
+    }
+
+    private void StartWater()
+    {
+        _gameStarted = true;
+        ChangeWaterType(WaterType.Normal, 0);
+    }
+
+    private void StopWater()
+    {
+        _gameStarted = false;
     }
     private void CreatePools()
     {
@@ -74,7 +90,11 @@ public class WaterManager : MonoBehaviour
             // instancia como FILHO DA CENA (não do SO)
             ParticlePool pool = Instantiate(def.pool, transform);
             pool.name = $"{def.type}Pool";
-            pools.Add(def.type, pool);
+            if (pools.ContainsKey(def.type))
+            {
+                Destroy(pool.gameObject);
+            }else
+                pools.Add(def.type, pool);
         }
     }
     
@@ -122,6 +142,7 @@ public class WaterManager : MonoBehaviour
                            
                         });
                         spawnable.CauseDamage();
+                        CallScore(spawnable, entry.waterType);
                     }
                 }
             }
@@ -163,6 +184,7 @@ public class WaterManager : MonoBehaviour
 
         private void Update()
         {
+            if (!_gameStarted) return;
             if (_currentWaterType == WaterType.Normal) return;
             if (_returning) return;
             if (_timer > 0)
@@ -178,7 +200,7 @@ public class WaterManager : MonoBehaviour
                     {
                         OnChangeToxicity?.Invoke(WaterType.Normal);
                         _waterReturn?.Kill();
-                        _waterReturn =  DOVirtual.DelayedCall(layer.effectDuration, () =>
+                        _waterReturn =  DOVirtual.DelayedCall(layer.effectDuration/2, () =>
                         {
                             ChangeWaterType(WaterType.Normal, 1);
                             
@@ -189,6 +211,22 @@ public class WaterManager : MonoBehaviour
                
             }
 
+        }
+
+        private void CallScore(SpawnableObject spawnable, WaterType type)
+        {
+            if (spawnable.gameObject.TryGetComponent(out CoolDownController coolDownController))
+            {
+                if (!coolDownController.CanBeTouched()) return;
+                foreach (var scoreSystem in _settings.scoreSystem.onHazardsTouchingWater)
+                {
+                    if (scoreSystem.hazard == spawnable.HazardType)
+                    {
+                        ScoreEvents.Raise(scoreSystem.score.score);
+                    }
+                }
+                
+            }
         }
 }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
@@ -16,6 +17,8 @@ public class SpawnableObject : MonoBehaviour
         public Rigidbody2D Rigidbody2D => rb2D;
         [FormerlySerializedAs("soundEmitter")] [SerializeField] protected MovableSoundEmitter movableSoundEmitter;
         protected bool _timedOut = false;
+        [SerializeField] protected WinHitPoint winHitPoint;
+        public WinHitPoint WinHitPoint=> winHitPoint;
        
 
  
@@ -28,6 +31,7 @@ public class SpawnableObject : MonoBehaviour
         
         protected virtual void OnEnable()
         {
+            GameManager.OnEndGame += ReturnToPool;
             _timedOut = false;
             ActiveDuration = hazardType ? hazardType.hazardDuration : 7f;
             _timeRemaining = ActiveDuration;
@@ -47,6 +51,8 @@ public class SpawnableObject : MonoBehaviour
         private void OnDisable()
         {
             ChangeCollidersState(false);
+            GameManager.OnEndGame -= ReturnToPool;
+            
         }
         
         public void GetSpawner(Spawner originalSpawner)
@@ -77,6 +83,7 @@ public class SpawnableObject : MonoBehaviour
 
         protected virtual void Timeout()
         {
+            CallScoreByTimeout(hazardType);
             ReturnToPool();
         }
 
@@ -87,8 +94,15 @@ public class SpawnableObject : MonoBehaviour
 
         public virtual void CauseDamage()
         {
-            
 
         }
+
+        protected void CallScoreByTimeout(HazardsSO hazard)
+        {
+           //call points for timeout
+        }        
         
+               
+        
+
     }

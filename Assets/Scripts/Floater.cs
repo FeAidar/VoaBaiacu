@@ -10,7 +10,7 @@ public class Floater : SpawnableObject
     private static readonly int Hide = Animator.StringToHash("Hide");
     private static readonly int ShowUp = Animator.StringToHash("ShowUp");
 
-    [SerializeField] private WinHitPoint winHitPoint;
+    
     [SerializeField] private Animator animator;
     [SerializeField] ParticleNotifier endingParticle;
     [SerializeField] private ParticleSystem startingParticle;
@@ -18,7 +18,7 @@ public class Floater : SpawnableObject
    
     protected override void OnEnable()
     {
-base.OnEnable();
+        base.OnEnable();
         ChangeCollidersState(false);
         startingParticle.Play();
         animator.SetTrigger(ShowUp);

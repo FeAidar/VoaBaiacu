@@ -11097,6 +11097,7 @@ MonoBehaviour:
   canvasFadeSpeed: 0.2
   cutsceneStartDelay: 0.2
   timeBeforeStartingGameplay: 1.5
+  highScore: {fileID: 1504900048}
   sceneToUnload: 0
   sceneToLoad: 1
 --- !u!1 &1004376903
@@ -11642,7 +11643,6 @@ GameObject:
   - component: {fileID: 1504900046}
   - component: {fileID: 1504900049}
   - component: {fileID: 1504900048}
-  - component: {fileID: 1504900047}
   m_Layer: 5
   m_Name: Score Numbers
   m_TagString: Untagged
@@ -11670,21 +11670,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.0012207, y: -27.769928}
   m_SizeDelta: {x: 196.07, y: 46.28}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1504900047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1504900045}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 620afb7b5e679674f89b95401cd0e3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highscore: {fileID: 1504900048}
-  highScore: 0
-  scoreValue: 0
 --- !u!114 &1504900048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12877,8 +12862,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f72d087b4c0c1b84dad6e4a2abd284cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fangs: []
   mouth: {fileID: 3455406113031948442}
   eyes: {fileID: 8832218548463268595}
+  movableSoundEmitter: {fileID: 0}
 --- !u!1 &1118490834786820984
 GameObject:
   m_ObjectHideFlags: 0

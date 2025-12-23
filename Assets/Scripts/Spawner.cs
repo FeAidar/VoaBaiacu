@@ -20,6 +20,7 @@ public class Spawner : MonoBehaviour
     protected Vector3 _topRight;
     protected Vector3 _bottomLeft;
     protected Coroutine _spawnRoutine;
+    private Tween _spawnTween;
     
    private void Awake()
     {
@@ -115,7 +116,8 @@ public class Spawner : MonoBehaviour
 
     protected virtual void  SpawnObject()
     {
-      DOVirtual.DelayedCall(_delayStartTime, () =>
+        _spawnTween?.Kill();
+        _spawnTween = DOVirtual.DelayedCall(_delayStartTime, () =>
       {
           Debug.Log("SpawnObject");
           _spawnRoutine = StartCoroutine(SpawnLoop());
@@ -129,7 +131,9 @@ public class Spawner : MonoBehaviour
     
     void StopSpawn()
     {
-        
+        _spawnTween?.Kill();
+        StopCoroutine(_spawnRoutine);
+        _pool.Clear();
     }
 
     #region PoolingSystem

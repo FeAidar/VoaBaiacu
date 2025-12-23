@@ -76,6 +76,10 @@ MonoBehaviour:
     - score:
         score: -100
       waterType: 2
+    onPlayerTouchingHazards:
+    - score:
+        score: 250
+      hazard: {fileID: 11400000, guid: ffbeee831959f1a4b825876f965af2af, type: 2}
     onHazardsTimingOut:
     - score:
         score: 250

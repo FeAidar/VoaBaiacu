@@ -46,6 +46,7 @@ public class Bomb : SpawnableObject
 
     protected override void Timeout()
     {
+       CallScoreByTimeout(hazardType);
        PlayFinishParticle();
     }
 

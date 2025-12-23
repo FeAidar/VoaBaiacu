@@ -2,13 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Collections;
+using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    
+    
     public delegate void ParseSettings(GameSettingsSO settings);
     public static event ParseSettings OnParseSettings;
     public delegate void StartGame();
@@ -17,23 +20,34 @@ public class GameManager : MonoBehaviour
     public static event ChangePeriod OnChangePeriod;
     public delegate void EndGame();
     public static event EndGame OnEndGame;
+    
+    //public delegate void Score(int score);
+   // public static event Score OnScoreEvent;
    
     [Header("Settings")]
-    [SerializeField]  private TimePeriod currentPeriod;
-    [SerializeField] private float currentPeriodTime;
-    [SerializeField] private float currentTotalTime;
-    private float _maxPeriodTime;
-    
-    [SerializeField] private DrawManager drawManager;
     [SerializeField] private GameSettingsSO settings;
-    //[SerializeField] private Spawner genericSpawner;
-    private bool _canPlay;
-    [SerializeField] private List<Spawner> hazards = new List<Spawner>();
+   
+    
+   
 
-     
     [Header("Debug Stuff")]
-    public bool ForcePlay;
-    public GameObject DebugCamera;
+   // [ShowInInspector, ReadOnly] 
+    private List<Spawner> _hazards = new List<Spawner>();
+   // [ShowInInspector, ReadOnly] 
+    private int _currentScore;
+  //  [ShowInInspector, ReadOnly]   
+    private TimePeriod _currentPeriod;
+  //  [ShowInInspector, ReadOnly] 
+    private float _currentPeriodTime;
+ //   [ShowInInspector, ReadOnly] 
+    private float _currentTotalTime;
+    
+    private bool _canPlay;
+    private float _maxPeriodTime;
+    public bool forcePlay;
+    public GameObject debugCamera;
+    
+    
     private void Awake()
     {
         if (Instance != null)
@@ -46,9 +60,13 @@ public class GameManager : MonoBehaviour
         
         if (!Camera.main)
         {
-           DebugCamera.SetActive(true);
+           debugCamera.SetActive(true);
            
         }
+        
+        ScoreEvents.OnScoreEvent += AddScore;
+        LifeEvents.OnGameOverEvent += GameOver;
+        
         OnStartGame += StartPlaying;
         StartMenu.OnGameStarted += StartSetup;
     }
@@ -57,29 +75,31 @@ public class GameManager : MonoBehaviour
     private void StartPlaying()
     {
         _canPlay = true;
+        _currentTotalTime = 0f;
     }
 
     private void Setup(int period)
     {
-        currentPeriod = settings.daySettings[period].period;
-       currentPeriodTime = 0f;
+        _currentPeriod = settings.daySettings[period].period;
+       _currentPeriodTime = 0f;
         _maxPeriodTime = settings.daySettings[period].duration;
 
     }
     private void Update()
     {
-        if (ForcePlay)
+        if (forcePlay)
         {
-            StartSetup();
-          ForcePlay = false;
+            if(!_canPlay)
+                 StartSetup(); 
+            forcePlay = false;
         }
 
         if (!_canPlay) return;
         Timer();
-        if (currentPeriodTime < _maxPeriodTime) return;
+        if (_currentPeriodTime < _maxPeriodTime) return;
         for (int i = 0; i < settings.daySettings.Length; i++)
         {
-            if (settings.daySettings[i].period == currentPeriod)
+            if (settings.daySettings[i].period == _currentPeriod)
             {
                 if (i + 1 < settings.daySettings.Length)
                 {
@@ -100,23 +120,24 @@ public class GameManager : MonoBehaviour
 
     private void Timer()
     {
-        currentPeriodTime += Time.deltaTime;
-        currentTotalTime += Time.deltaTime;
+        _currentPeriodTime += Time.deltaTime;
+        _currentTotalTime += Time.deltaTime;
     }
 
     private void OnDestroy()
     {
         StartMenu.OnGameStarted -= StartSetup;
         OnStartGame -= StartPlaying;
+        ScoreEvents.OnScoreEvent -= AddScore;
     }
 
     private void StartSetup()
     {
-        
+        _currentScore = 0;
         Setup(0);
         CreateSpawners();
         OnParseSettings?.Invoke(settings);
-        OnChangePeriod?.Invoke(currentPeriod);
+        OnChangePeriod?.Invoke(_currentPeriod);
         OnStartGame?.Invoke();
     }
 
@@ -127,10 +148,10 @@ public class GameManager : MonoBehaviour
             foreach (Hazards hazard in day.hazards)
             {
                 var alreadySpawned = false;
-                if (hazards.Count > 0)
+                if (_hazards.Count > 0)
                 {
                     
-                    foreach (Spawner currentSpawners in hazards)
+                    foreach (Spawner currentSpawners in _hazards)
                     {
                         if (currentSpawners.AssignedHazard == hazard.hazard)
                             alreadySpawned = true;
@@ -147,7 +168,7 @@ public class GameManager : MonoBehaviour
                             var newObject = Instantiate(spawningType.spawnerType);
                             newObject.name = hazard.hazard.name + " spawner";
                             newObject.GetAssignedHazard(hazard.hazard);
-                            hazards.Add(newObject.GetComponent<Spawner>());
+                            _hazards.Add(newObject.GetComponent<Spawner>());
                         }
                     }
               
@@ -165,12 +186,27 @@ public class GameManager : MonoBehaviour
 
     private void ChangePeriodOfDay()
     {
-        OnChangePeriod?.Invoke(currentPeriod);
+        OnChangePeriod?.Invoke(_currentPeriod);
     }
 
     private void GameOver()
     {
         OnEndGame?.Invoke();
+        ScoreEvents.RegisterHighScore(_currentScore);
+        _canPlay = false;
+    }
+
+
+    private void AddScore(int value)
+    {
+        _currentScore = Mathf.Max(0, _currentScore + value);
+        ScoreEvents.FullScore(_currentScore);
+      
+    }
+
+    public void Reset()
+    {
+        StartSetup();
     }
     
 }

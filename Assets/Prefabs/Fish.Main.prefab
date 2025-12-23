@@ -2397,6 +2397,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f72d087b4c0c1b84dad6e4a2abd284cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fangs:
+  - {fileID: 1829823706015003335}
+  - {fileID: 6615080714986033433}
   mouth: {fileID: 6615080714986033433}
   eyes: {fileID: 1057003032244972400}
   movableSoundEmitter: {fileID: 760419914}
@@ -2519,9 +2522,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eb81138233395f4b8f09274709c6154, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb2D: {fileID: 8916212662518659832}
-  animator: {fileID: 8916212662518659812}
   movableSoundEmitter: {fileID: 760419914}
+  animator: {fileID: 8916212662518659812}
+  mainCollider: {fileID: 5331437668962987685}
+  rb2D: {fileID: 8916212662518659832}
 --- !u!114 &760419914
 MonoBehaviour:
   m_ObjectHideFlags: 0

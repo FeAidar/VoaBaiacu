@@ -45,14 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c075fe9d173d4346b8c54b9032a883f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPeriod: 0
-  currentPeriodTime: 0
-  currentTotalTime: 0
-  drawManager: {fileID: 0}
   settings: {fileID: 11400000, guid: cc791dd7652a280478a621add0e3ab8c, type: 2}
-  hazards: []
-  ForcePlay: 1
-  DebugCamera: {fileID: 0}
+  drawManager: {fileID: 0}
+  forcePlay: 0
+  debugCamera: {fileID: 0}
 --- !u!114 &3247089197080295774
 MonoBehaviour:
   m_ObjectHideFlags: 0

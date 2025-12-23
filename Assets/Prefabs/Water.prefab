@@ -1052,7 +1052,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7180819214185607867
 Transform:
   m_ObjectHideFlags: 0
@@ -3729,6 +3729,7 @@ GameObject:
   - component: {fileID: 7180819215794294961}
   - component: {fileID: 7180819215794294967}
   - component: {fileID: 7180819215794294960}
+  - component: {fileID: 908377595}
   m_Layer: 0
   m_Name: Water
   m_TagString: Untagged
@@ -3743,7 +3744,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7180819215794294973}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3909,6 +3910,18 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fd8f683c05a78854cbd14cc820bc22b6, type: 3}
   dangerWaterAudioClips:
   - {fileID: 8300000, guid: 42b36d16799613a4f9a8c9ab70464acb, type: 3}
+--- !u!114 &908377595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7180819215794294973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 054a1c64d92af6742a426bd18bfa7d6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7180819215841750450
 GameObject:
   m_ObjectHideFlags: 0

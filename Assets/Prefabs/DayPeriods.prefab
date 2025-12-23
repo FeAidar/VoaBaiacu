@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5889392738043383925}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
     dayArt: {fileID: 5050326023120642368}
   - dayPeriod: 2
     dayArt: {fileID: 5050326023762882402}
-  transitionExitDelay: 2
+  transitionExitDelay: 2.2
 --- !u!1001 &280294656949695164
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -109,6 +109,10 @@ PrefabInstance:
     - target: {fileID: 3336502834988154854, guid: e7ae60ffc90e54d4b9fdc8374340ef63, type: 3}
       propertyPath: m_Name
       value: Evening
+      objectReference: {fileID: 0}
+    - target: {fileID: 7297616543338310176, guid: e7ae60ffc90e54d4b9fdc8374340ef63, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7ae60ffc90e54d4b9fdc8374340ef63, type: 3}

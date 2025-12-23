@@ -171,14 +171,14 @@ public class PowerUp : MonoBehaviour
 
             if (Vida == 2)
             {
-                CanvasMascara.GetComponent<LifeGauge>().duasvidas();
-                CanvasParaquedas.GetComponent<LifeGauge>().duasvidas();
+     //           CanvasMascara.GetComponent<UIDisplay>().duasvidas();
+     //           CanvasParaquedas.GetComponent<UIDisplay>().duasvidas();
             }
 
             if (Vida == 1)
             {
-                CanvasMascara.GetComponent<LifeGauge>().umavida();
-                CanvasParaquedas.GetComponent<LifeGauge>().umavida();
+    //            CanvasMascara.GetComponent<UIDisplay>().umavida();
+//CanvasParaquedas.GetComponent<UIDisplay>().umavida();
             }
 
             if (Vida == 0)
@@ -207,8 +207,8 @@ public class PowerUp : MonoBehaviour
             yield return new WaitForSecondsRealtime(0.2f);
             Vida = 3;
 
-            CanvasMascara.GetComponent<LifeGauge>().tresvidas();
-            CanvasParaquedas.GetComponent<LifeGauge>().tresvidas();
+         //   CanvasMascara.GetComponent<UIDisplay>().tresvidas();
+         //   CanvasParaquedas.GetComponent<UIDisplay>().tresvidas();
 
 
         }
@@ -225,7 +225,7 @@ public class PowerUp : MonoBehaviour
             GetComponent<Rigidbody2D>().mass = pesonormal;
             yield return new WaitForSecondsRealtime(0.2f);
             Vida = 3;
-            CanvasParaquedas.GetComponent<LifeGauge>().tresvidas();
+         //   CanvasParaquedas.GetComponent<UIDisplay>().tresvidas();
 
 
         }
