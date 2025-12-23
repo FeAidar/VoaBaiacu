@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-//using Sirenix.OdinInspector;
+using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -31,15 +31,15 @@ public class GameManager : MonoBehaviour
    
 
     [Header("Debug Stuff")]
-   // [ShowInInspector, ReadOnly] 
+    [ShowInInspector, ReadOnly] 
     private List<Spawner> _hazards = new List<Spawner>();
-   // [ShowInInspector, ReadOnly] 
+   [ShowInInspector, ReadOnly] 
     private int _currentScore;
-  //  [ShowInInspector, ReadOnly]   
+    [ShowInInspector, ReadOnly]   
     private TimePeriod _currentPeriod;
-  //  [ShowInInspector, ReadOnly] 
+    [ShowInInspector, ReadOnly] 
     private float _currentPeriodTime;
- //   [ShowInInspector, ReadOnly] 
+    [ShowInInspector, ReadOnly] 
     private float _currentTotalTime;
     
     private bool _canPlay;
