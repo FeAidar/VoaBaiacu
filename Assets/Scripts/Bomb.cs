@@ -48,6 +48,7 @@ public class Bomb : SpawnableObject
     {
        CallScoreByTimeout(hazardType);
        PlayFinishParticle();
+       ForceFeedBackController.ShakeHeavy();
     }
 
     public void PlayFinishParticle()

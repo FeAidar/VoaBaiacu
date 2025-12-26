@@ -17,18 +17,38 @@ public class ScreenBounds : MonoBehaviour
     private Vector3 downLeftCorner;
     public Vector3 TopRightCorner => topRightCorner;
     public Vector3 DownLeftCorner => downLeftCorner;
+    private bool waitForUpdate;
 
 
     private void Awake()
     {
+        StartCoroutine(WaitForScene());
+
+
+
+    }
+    IEnumerator WaitForScene()
+    {
+        GameManager.OnStartGame += SetupBoundaries;
+        while (Camera.main==null)
+        {
+            waitForUpdate = true;
+            yield return null;
+        }
+        
         _camera = Camera.main;
         cameraPos = _camera.transform.position;
         CacheScreenSize();
         SetupBoundaries();
-        GameManager.OnStartGame += SetupBoundaries;
-      
-
+        if (waitForUpdate)
+        {
+            waitForUpdate = false;
+            OnChange?.Invoke(topRightCorner, downLeftCorner);
+        }
+       
+   
     }
+    
 
     private void OnDisable()
     {
@@ -38,12 +58,15 @@ public class ScreenBounds : MonoBehaviour
 
     private void Start()
     {
-        OnChange?.Invoke(topRightCorner, downLeftCorner);
+        if (!waitForUpdate)
+        {
+            OnChange?.Invoke(topRightCorner, downLeftCorner);
+        }
     }
 
     private void Update()
     {
-        
+        if (waitForUpdate) return;
         if (!ScreenSizeChanged() && cameraPos == _camera.transform.position) return;
         CacheScreenSize();
         SetupBoundaries();

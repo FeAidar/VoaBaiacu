@@ -1,5 +1,5 @@
 using System.Collections;
-using System.Linq;
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,45 +7,69 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    [SerializeField] private int mainMenuScene;
-    [SerializeField] private int gameScene;
-    [SerializeField] private int creditsScene;
-    [SerializeField] private int[] startingScenes;
-    [SerializeField] private Crossfader crossfader;
+    
+    public static SceneLoader Instance { get; private set; }
+    [SerializeField] private SceneReferences sceneReferences;
+    public SceneReferences SceneReferences => sceneReferences;
+  
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
-        foreach (int toLoadScene in startingScenes)
+        if (Instance != null)
         {
-           LoadScene(toLoadScene);
+            Destroy(gameObject);
+            return;
         }
-
-
-
-        DOVirtual.DelayedCall(.2f, () => crossfader.DoFadeToScreen());
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+        
+       
     }
 
-    public void UnloadScene(int scene)
+    private void Start()
+    {
+        foreach (var toLoadScene in sceneReferences.StartingScenes)
+        {
+            Debug.Log(toLoadScene.SceneName);
+            LoadSceneAsync(toLoadScene);
+        }
+
+    }
+
+    public void UnloadScene(LevelSO scene)
     {
         StartCoroutine(UnLoadYourAsyncScene(scene));
     }
 
-    public void LoadScene(int scene)
+    public void LoadSceneAsync(LevelSO scene)
     {
-        Scene[] scenes = SceneManager.GetAllScenes();
-        foreach (Scene loadedScene in scenes)
-        {
-            if (loadedScene.buildIndex == scene) return;
-        }
+        if (SceneManager.GetSceneByName(scene.SceneName).isLoaded)
+            return;
+
         StartCoroutine(LoadYourAsyncScene(scene));
+        
+    }
+    public void LoadScene(LevelSO scene)
+    {
+        if (SceneManager.GetSceneByName(scene.SceneName).isLoaded)
+            return;
 
+   
+        SceneManager.LoadScene(scene.SceneName, LoadSceneMode.Additive);
+        DOVirtual.DelayedCall(.2f,() =>
+        {
+            Debug.Log("Asked for Fade");
+            CrossFadeEvents.FadeIn();
+        });
 
+        
+       
     }
 
-    private IEnumerator UnLoadYourAsyncScene(int scene)
+
+    private IEnumerator UnLoadYourAsyncScene(LevelSO scene)
     {
-        AsyncOperation asyncLoad = SceneManager.UnloadSceneAsync(scene);
+        AsyncOperation asyncLoad = SceneManager.UnloadSceneAsync(scene.SceneName);
         while (asyncLoad != null && !asyncLoad.isDone)
         {
             yield return null;
@@ -55,15 +79,22 @@ public class SceneLoader : MonoBehaviour
     }
     
 
-    private IEnumerator LoadYourAsyncScene(int scene)
+    private IEnumerator LoadYourAsyncScene(LevelSO sceneSo)
     {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneSo.SceneName, LoadSceneMode.Additive);
         while (asyncLoad != null && !asyncLoad.isDone)
         {
             yield return null;
         }
+        Scene scene = SceneManager.GetSceneByName(sceneSo.SceneName);
+        SceneManager.SetActiveScene(scene);
+        DOVirtual.DelayedCall(.2f,() =>
+        {
+            Debug.Log("Asked for Fade");
+            CrossFadeEvents.FadeIn();
+        });
 
-        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(scene));
+
 
 
     }

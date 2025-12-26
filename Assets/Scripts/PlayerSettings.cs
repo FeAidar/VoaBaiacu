@@ -1,6 +1,7 @@
 
 using DefaultNamespace;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.Serialization;
 
 public class PlayerSettings : MonoBehaviour
@@ -32,6 +33,12 @@ public class PlayerSettings : MonoBehaviour
         GameManager.OnEndGame += Stop;
         GameManager.OnParseSettings += GetSettings;
         ScreenBounds.OnChange += UpdateScreenBounds;
+        GameManager.OnStartGame += ForcePosition;
+
+    }
+
+    private void ForcePosition()
+    {
         if (_topRight == Vector3.zero && _bottomLeft == Vector3.zero)
         {
             var bounds = FindObjectOfType<ScreenBounds>();
@@ -49,6 +56,7 @@ public class PlayerSettings : MonoBehaviour
         GameManager.OnStartGame -= StartGame;
         GameManager.OnEndGame -= Stop;
         ScreenBounds.OnChange -= UpdateScreenBounds;
+        GameManager.OnStartGame -= ForcePosition;
     }
     
    
@@ -197,6 +205,10 @@ public class PlayerSettings : MonoBehaviour
     private void CheckLife(int damageTaken)
     {
         if (_immortal) return;
+        if (damageTaken < 1)
+        {
+            ForceFeedBackController.ShakeLifeLoss();
+        }
         _currentLives = Mathf.Max(0, _currentLives + damageTaken);
         LifeEvents.LifeChanged(_currentLives);
         if (_currentLives == 0)

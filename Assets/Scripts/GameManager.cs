@@ -5,6 +5,7 @@ using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
@@ -44,8 +45,8 @@ public class GameManager : MonoBehaviour
     
     private bool _canPlay;
     private float _maxPeriodTime;
-    public bool forcePlay;
-    public GameObject debugCamera;
+    private bool forcePlay;
+    //public GameObject debugCamera;
     
     
     private void Awake()
@@ -60,17 +61,43 @@ public class GameManager : MonoBehaviour
         
         if (!Camera.main)
         {
-           debugCamera.SetActive(true);
-           
+         SceneManager.LoadSceneAsync("EssencialsScene", LoadSceneMode.Additive);
+         forcePlay = true;
+
         }
-        
+
+        StartCoroutine(WaitForScene());
+
+
+    }
+
+    IEnumerator WaitForScene()
+    {
+        while (!Camera.main)
+        {
+            Debug.Log("Waiting for scene");
+         yield return null;
+        }
+
+        if (forcePlay)
+        {
+            CrossFadeEvents.FadeIn();
+            MusicManager.Instance.PlayMainGameSong();
+        }
+        yield return new WaitForSeconds(.3f);
         ScoreEvents.OnScoreEvent += AddScore;
         LifeEvents.OnGameOverEvent += GameOver;
         
         OnStartGame += StartPlaying;
-        StartMenu.OnGameStarted += StartSetup;
+        IntroSceneManager.OnGameStarted += StartSetup;
+        if (forcePlay)
+        {
+            StartSetup();
+            forcePlay = false;
+        }
     }
-    
+
+
 
     private void StartPlaying()
     {
@@ -87,13 +114,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (forcePlay)
-        {
-            if(!_canPlay)
-                 StartSetup(); 
-            forcePlay = false;
-        }
-
+        
         if (!_canPlay) return;
         Timer();
         if (_currentPeriodTime < _maxPeriodTime) return;
@@ -126,7 +147,7 @@ public class GameManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        StartMenu.OnGameStarted -= StartSetup;
+        IntroSceneManager.OnGameStarted -= StartSetup;
         OnStartGame -= StartPlaying;
         ScoreEvents.OnScoreEvent -= AddScore;
     }

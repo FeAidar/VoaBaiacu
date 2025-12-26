@@ -15,6 +15,7 @@ namespace DefaultNamespace
             {
                 winCollider.enabled = false;
                 spawnableObject.Victory();
+                ForceFeedBackController.ShakeVictory();
 
             }
         }

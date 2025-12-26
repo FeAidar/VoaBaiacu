@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.IO;
+using System;
+using System.Collections.Generic;
 
 public static class HighScoreManager
 {
@@ -14,16 +16,39 @@ public static class HighScoreManager
         {
             if (_cached == null)
                 Load();
-            return _cached.highScore;
+
+            if (_cached.highscores == null || _cached.highscores.Count == 0)
+                return 0;
+
+            return _cached.highscores[0].score; // já vem ordenado
         }
     }
 
     public static void TrySave(int newScore)
     {
-        if (newScore <= CurrentHighScore)
+        if (_cached == null)
+            Load();
+
+        if (newScore < 500) // tua regra original
             return;
 
-        _cached.highScore = newScore;
+        // cria nova entrada com data
+        var entry = new HighScoreEntry
+        {
+            score = newScore,
+            date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
+        };
+
+        // adiciona
+        _cached.highscores.Add(entry);
+
+        // ordena (maior primeiro)
+        _cached.highscores.Sort((a, b) => b.score.CompareTo(a.score));
+
+        // limita a 10
+        if (_cached.highscores.Count > 10)
+            _cached.highscores.RemoveRange(10, _cached.highscores.Count - 10);
+
         Save();
     }
 
@@ -31,17 +56,20 @@ public static class HighScoreManager
     {
         if (!File.Exists(FilePath))
         {
-            _cached = new HighScoreData { highScore = 0 };
+            _cached = new HighScoreData { highscores = new List<HighScoreEntry>() };
             return;
         }
 
         var json = File.ReadAllText(FilePath);
         _cached = JsonUtility.FromJson<HighScoreData>(json);
+
+        if (_cached.highscores == null)
+            _cached.highscores = new List<HighScoreEntry>();
     }
 
     static void Save()
     {
-        var json = JsonUtility.ToJson(_cached);
+        var json = JsonUtility.ToJson(_cached, true);
         File.WriteAllText(FilePath, json);
     }
 }

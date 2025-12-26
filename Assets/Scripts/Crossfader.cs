@@ -1,4 +1,3 @@
-using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,21 +14,31 @@ public class Crossfader : MonoBehaviour
     {
 
         fader.alpha = 1;
+        CrossFadeEvents.OnFadeOut += DoFadeToBlack;
+        CrossFadeEvents.OnFadeIn += DoFadeToScreen;
+        CrossFadeEvents.OnFadeOutColor += DoFadeToCustomColor;
 
     }
 
-    public void DoFadeToBlack()
+    private void OnDestroy()
+    {
+        CrossFadeEvents.OnFadeOut -= DoFadeToBlack;
+        CrossFadeEvents.OnFadeIn -= DoFadeToScreen;
+        CrossFadeEvents.OnFadeOutColor -= DoFadeToCustomColor;
+    }
+
+    private void DoFadeToBlack()
     {
       Fade(Color.black, 1);
       
     }
- 
-    public void DoFadeToScreen()
+
+    private void DoFadeToScreen()
     {
         Fade(Color.black, 0);
     }
 
-    public void DoFadeToCustomColor(Color color)
+    private void DoFadeToCustomColor(Color color)
     {
         Fade(color, 1);
     }

@@ -49,6 +49,7 @@ protected internal override void Victory()
          Vector2 dir = -contact.normal;
          Vector2 finalDir = (dir + Vector2.up).normalized;
          playerSettings.Rigidbody2D.AddForce(finalDir * 0.25f, ForceMode2D.Impulse);
+         ForceFeedBackController.ShakeLightTouch();
          
      }
 

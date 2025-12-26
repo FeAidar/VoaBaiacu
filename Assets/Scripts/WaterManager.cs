@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using Unity.Mathematics;
-using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -152,6 +151,7 @@ public class WaterManager : MonoBehaviour
                 Vector2 dir = contact.normal;
                 playerSettings.Rigidbody2D.AddForce(Vector2.up * .5f, ForceMode2D.Impulse);
                 soundEmitter.PlayAudio(soundEmitter.PlayerWaterAudioClips);
+                ForceFeedBackController.ShakeWaterFall();
             }
 
             if (other.gameObject.TryGetComponent(out SpawnableObject spawnableObject))
@@ -179,6 +179,8 @@ public class WaterManager : MonoBehaviour
             _currentWaterType = type;
             OnChangeToxicity?.Invoke(type);
             _returning = false;
+            if(_currentWaterType != WaterType.Normal)
+            ForceFeedBackController.ShakeBadWater();
 
         }
 
